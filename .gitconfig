@@ -1,0 +1,50 @@
+[core]
+    editor = 'C:/Program Files/Sublime Text/subl.exe' -w
+    autocrlf = input
+    excludesfile = ~/.gitignore
+[push]
+    default = simple
+[user]
+    name = Marko Trickovic
+    email = contact@markotrickovic.com
+[init]
+    defaultBranch = main
+[color]
+    status = auto
+    diff = auto
+    branch = auto
+    interactive = auto
+    grep = auto
+    ui = auto
+[alias]
+    d = diff
+    ds = diff --staged
+    co = checkout
+    ci = commit
+    ca = commit -a
+    ps = "!git push origin $(git rev-parse --abbrev-ref HEAD)"
+    pl = "!git pull origin $(git rev-parse --abbrev-ref HEAD)"
+    st = status
+    br = branch
+    ba = branch -a
+    bm = branch --merged
+    bn = branch --no-merged
+    changes = log -n1 -p --format=fuller
+    amend = commit --amend -C HEAD
+    undo = clean -f -d
+    undoci = reset HEAD~1
+    unstage = reset HEAD --
+    lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+    ls = log --pretty=format:\"%C(yellow)%h %C(blue)%ad%C(red)%d %C(reset)%s%C(green) [%cn]\" --decorate --date=short
+    lg-full = log --name-status --pretty=fuller
+[diff]
+    tool = p4merge
+[difftool "p4merge"]
+    cmd = p4merge \"$LOCAL\" \"$REMOTE\"
+    trustExitCode = true
+[merge]
+    tool = p4merge
+[mergetool "p4merge"]
+    cmd = p4merge \"$BASE\" \"$LOCAL\" \"$REMOTE\" \"$MERGED\"
+    trustExitCode = true
+
