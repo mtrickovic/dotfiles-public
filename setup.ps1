@@ -46,11 +46,13 @@ if (Test-Path $subl_link -PathType Leaf) {
     Write-Host "Existing file backed up to: $newName"
 }
 
-# Rename existing nvim directory in APPDATA to nvim.bak
+# Rename existing nvim directory in LOCALAPPDATA to nvim.bak
 $nvimLink = Join-Path $env:LOCALAPPDATA 'nvim'
 $nvimBackup = Join-Path $env:LOCALAPPDATA 'nvim.bak'
 
-if (Test-Path $nvimLink -PathType Container) {
+if (Test-Path $nvimBackup -PathType Container) {
+    Write-Host "Backup directory already exists: $nvimBackup"
+} elseif (Test-Path $nvimLink -PathType Container) {
     Rename-Item -Path $nvimLink -NewName 'nvim.bak' -Force
     Write-Host "Existing nvim directory renamed to nvim.bak"
 }
