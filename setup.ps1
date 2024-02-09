@@ -1,5 +1,28 @@
 # setup.ps1
 
+param(
+    [switch]$InstallPackages
+)
+
+# Install required packages
+if ($InstallPackages) {
+    $packages = @(
+        'Microsoft.PowerShell',
+        'JanDeDobbeleer.OhMyPosh',
+        'Git.Git',
+        'GitHub.cli',
+        'SublimeHQ.SublimeText.4',
+        'Neovim.Neovim',
+        'Perforce.P4Merge',
+        'Google.Chrome'
+    )
+
+    foreach ($package in $packages) {
+        Write-Host "Installing $package..."
+        winget install $package
+    }
+}
+
 # Function to create symbolic links
 function Create-Symlink {
     param(
@@ -8,23 +31,6 @@ function Create-Symlink {
     )
 
     cmd /c mklink /H $link $target
-}
-
-# Install required packages
-$packages = @(
-    'Microsoft.PowerShell',
-    'JanDeDobbeleer.OhMyPosh',
-    'Git.Git',
-    'GitHub.cli',
-    'SublimeHQ.SublimeText.4',
-    'Neovim.Neovim',
-    'Perforce.P4Merge',
-    'Google.Chrome'
-)
-
-foreach ($package in $packages) {
-    Write-Host "Installing $package..."
-    #winget install $package
 }
 
 # Create powershell directory (if doesn't exists)
