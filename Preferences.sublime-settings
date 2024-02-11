@@ -17,5 +17,11 @@
 	"wrap_width": 80,
 	"rulers": [80],
 	"font_size": 14,
-    "show_encoding": true
+    "show_encoding": true,
+	"ignored_packages":
+	[
+		"DoxyDoxygen",
+		"SublimeLinter",
+		"Vintage"
+	],
 }
