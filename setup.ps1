@@ -71,6 +71,7 @@ $profilePath = (Get-Item .\profile.ps1).FullName
 $vimrcPath = (Get-Item .\.vimrc).FullName
 $preferencesPath = (Get-Item .\Preferences.sublime-settings).FullName
 $nvimPath = (Get-Item .\nvim).FullName
+$themePath = (Get-Item .\powerflow.omp.json).FullName
 
 # Set up symbolic links for configuration files
 Create-Symlink $gitconfigPath $env:USERPROFILE\.gitconfig
@@ -78,6 +79,7 @@ Create-Symlink $profilePath $env:USERPROFILE\Documents\WindowsPowerShell\profile
 Create-Symlink $profilePath $env:USERPROFILE\Documents\PowerShell\profile.ps1
 Create-Symlink $vimrcPath $env:USERPROFILE\.vimrc
 Create-Symlink $preferencesPath $env:APPDATA\'Sublime Text'\Packages\User\Preferences.sublime-settings
+Create-Symlink $themePath $env:POSH_THEMES_PATH\powerflow.omp.json
 cmd /c mklink /D $nvimLink $nvimPath
 
 Write-Host "Dotfiles setup complete."
