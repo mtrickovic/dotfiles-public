@@ -26,6 +26,12 @@ Set-Alias pdf 'C:\Program Files\Adobe\Acrobat DC\Acrobat\acrobat.exe'
 Set-Alias gcc 'C:\Tools\mingw64\bin\gcc.exe'
 Set-Alias make 'C:\Tools\gnuwin32\bin\make.exe'
 
+# Sets the Python alias if it finds it installed
+$pythonPath = Join-Path $env:USERPROFILE "\intelpython3\"
+if (Test-Path $pythonPath) {
+    Set-Alias python $(Join-Path $pythonPath "python.exe")
+}
+
 # Utilities
 function which ($command) {
   Get-Command -Name $command -ErrorAction SilentlyContinue |
