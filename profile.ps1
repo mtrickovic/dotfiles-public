@@ -27,9 +27,17 @@ Set-Alias gcc 'C:\Tools\mingw64\bin\gcc.exe'
 Set-Alias make 'C:\Tools\gnuwin32\bin\make.exe'
 
 # Sets the Python alias if it finds it installed
-$pythonPath = Join-Path $env:USERPROFILE "\intelpython3\"
-if (Test-Path $pythonPath) {
-    Set-Alias python $(Join-Path $pythonPath "python.exe")
+$pythonPaths = @(
+    "$env:USERPROFILE\intelpython3\",
+    'C:\Program Files (x86)\Intel\oneAPI\intelpython\latest\'
+)
+
+foreach($path in $pythonPaths) {
+    $pythonExecutable = Join-Path $path "python.exe"
+    if (Test-Path $pythonExecutable) {
+        Set-Alias python $pythonExecutable
+        break
+    }
 }
 
 # Utilities
