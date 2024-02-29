@@ -75,8 +75,8 @@ $themePath = (Get-Item .\powerflow.omp.json).FullName
 
 # Set up symbolic links for configuration files
 Create-Symlink $gitconfigPath $env:USERPROFILE\.gitconfig
-Create-Symlink $profilePath $env:USERPROFILE\Documents\WindowsPowerShell\profile.ps1
-Create-Symlink $profilePath $env:USERPROFILE\Documents\PowerShell\profile.ps1
+Create-Symlink $profilePath $env:USERPROFILE\Documents\WindowsPowerShell\Microsoft.PowerShell_profile.ps1
+Create-Symlink $profilePath $env:USERPROFILE\Documents\PowerShell\Microsoft.PowerShell_profile.ps1
 Create-Symlink $vimrcPath $env:USERPROFILE\.vimrc
 Create-Symlink $preferencesPath $env:APPDATA\'Sublime Text'\Packages\User\Preferences.sublime-settings
 Create-Symlink $themePath $env:POSH_THEMES_PATH\powerflow.omp.json
