@@ -64,7 +64,7 @@ if (Test-Path $nvimBackup -PathType Container) {
     Write-Host "Existing nvim directory renamed to nvim.bak"
 }
 
-# Set up symbolic links for configuration files
+# Set up hard links for configuration files
 
 # Define variables for paths
 $gitconfigPath = (Get-Item .\.gitconfig).FullName
@@ -74,13 +74,23 @@ $preferencesPath = (Get-Item .\Preferences.sublime-settings).FullName
 $nvimPath = (Get-Item .\nvim).FullName
 $themePath = (Get-Item .\powerflow.omp.json).FullName
 
-# Set up symbolic links for configuration files
-Create-Symlink $gitconfigPath $env:USERPROFILE\.gitconfig
-Create-Symlink $profilePath $env:USERPROFILE\Documents\WindowsPowerShell\Microsoft.PowerShell_profile.ps1
-Create-Symlink $profilePath $env:USERPROFILE\Documents\PowerShell\Microsoft.PowerShell_profile.ps1
-Create-Symlink $vimrcPath $env:USERPROFILE\.vimrc
-Create-Symlink $preferencesPath $env:APPDATA\'Sublime Text'\Packages\User\Preferences.sublime-settings
-Create-Symlink $themePath $env:POSH_THEMES_PATH\powerflow.omp.json
+# Define variables for links
+$gitconfigLink = $env:USERPROFILE + '\.gitconfig'
+$profileDocPath = $env:USERPROFILE + '\Documents'
+$pwshProfilePath = $profileDocPath + '\WindowsPowerShell\' +
+                    'Microsoft.PowerShell_profile.ps1'
+$pwshProfilePathAlt = $profileDocPath + '\PowerShell\' +
+                    'Microsoft.PowerShell_profile.ps1'
+$vimrcLink = $env:USERPROFILE + '\.vimrc'
+$themeLink = $env:POSH_THEMES_PATH + '\powerflow.omp.json'
+
+# Set up hard links for configuration files
+Create-Symlink $gitconfigPath $gitconfigLink
+Create-Symlink $profilePath $pwshProfilePath
+Create-Symlink $profilePath $pwshProfilePathAlt
+Create-Symlink $vimrcPath $vimrcLink
+Create-Symlink $preferencesPath $sublLink
+Create-Symlink $themePath $themeLink
 cmd /c mklink /D $nvimLink $nvimPath
 
 Write-Host "Dotfiles setup complete."
