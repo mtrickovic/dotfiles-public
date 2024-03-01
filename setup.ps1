@@ -42,14 +42,15 @@ if (-not (Test-Path $powerShellDirectory -PathType Container)) {
 }
 
 # Create backup for Sublime Text Settings
-$subl_link = "$env:APPDATA\Sublime Text\Packages\User\Preferences.sublime-settings"
+$sublLoc = Join-Path $env:APPDATA 'Sublime Text\Packages\User'
+$sublLink = Join-Path $sublLoc 'Preferences.sublime-settings'
+$sublBackup = Join-Path $sublLoc 'Preferences.sublime-settings.bak'
 
-# Check if the destination file already exists
-if (Test-Path $subl_link -PathType Leaf) {
-    # Backup the existing file
-    $newName = "Preferences.sublime-settings.backup"
-    Rename-Item -Path $subl_link -NewName $newName -Force
-    Write-Host "Existing file backed up to: $newName"
+if (Test-Path $sublBackup -PathType Leaf) {
+    Write-Host "Backup file for Sublime already exists: $sublBackup"
+} elseif (Test-Path $sublLink -PathType Leaf) {
+    Rename-Item -Path $sublLink -NewName 'Preferences.sublime-settings.bak' -Force
+    Write-Host "Existing file backed up to: $sublBackup"
 }
 
 # Rename existing nvim directory in LOCALAPPDATA to nvim.bak
