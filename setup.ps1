@@ -30,7 +30,7 @@ function Create-Symlink {
         [string]$link
     )
 
-    cmd /c mklink /H $link $target
+    cmd /c mklink $link $target
 }
 
 # Create powershell directory (if doesn't exists)
@@ -64,7 +64,7 @@ if (Test-Path $nvimBackup -PathType Container) {
     Write-Host "Existing nvim directory renamed to nvim.bak"
 }
 
-# Set up hard links for configuration files
+# Set up symbolic links for configuration files
 
 # Define variables for paths
 $gitconfigPath = (Get-Item .\.gitconfig).FullName
@@ -84,7 +84,7 @@ $pwshProfilePathAlt = $profileDocPath + '\PowerShell\' +
 $vimrcLink = $env:USERPROFILE + '\.vimrc'
 $themeLink = $env:POSH_THEMES_PATH + '\powerflow.omp.json'
 
-# Set up hard links for configuration files
+# Set up symbolic links for configuration files
 Create-Symlink $gitconfigPath $gitconfigLink
 Create-Symlink $profilePath $pwshProfilePath
 Create-Symlink $profilePath $pwshProfilePathAlt
