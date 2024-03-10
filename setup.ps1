@@ -64,6 +64,19 @@ if (Test-Path $nvimBackup -PathType Container) {
     Write-Host "Existing nvim directory renamed to nvim.bak"
 }
 
+# Create backup for Windows Terminal Settings
+$terminalSettingsLoc = $env:LOCALAPPDATA + 
+                    '\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState'
+$terminalSettingsLink = $terminalSettingsLoc + '\settings.json'
+$terminalSettingsBackup = $terminalSettingsLoc + '\settings.json.bak'
+
+if (Test-Path $terminalSettingsBackup -PathType Leaf) {
+    Write-Host "Backup file already exists: $terminalSettingsBackup"
+} elseif (Test-Path $terminalSettingsLink -PathType Leaf) {
+    Rename-Item -Path $terminalSettingsLink -NewName 'settings.json.bak' -Force
+    Write-Host "Existing settings.json file renamed to settings.json.bak"
+}
+
 # Set up symbolic links for configuration files
 
 # Define variables for paths
@@ -73,6 +86,7 @@ $vimrcPath = (Get-Item .\.vimrc).FullName
 $preferencesPath = (Get-Item .\Preferences.sublime-settings).FullName
 $nvimPath = (Get-Item .\nvim).FullName
 $themePath = (Get-Item .\powerflow.omp.json).FullName
+$terminalPath = (Get-Item .\settings.json).FullName
 
 # Define variables for links
 $gitconfigLink = $env:USERPROFILE + '\.gitconfig'
@@ -91,6 +105,7 @@ Create-Symlink $profilePath $pwshProfilePathAlt
 Create-Symlink $vimrcPath $vimrcLink
 Create-Symlink $preferencesPath $sublLink
 Create-Symlink $themePath $themeLink
+Create-Symlink $terminalPath $terminalSettingsLink
 cmd /c mklink /D $nvimLink $nvimPath
 
 Write-Host "Dotfiles setup complete."
