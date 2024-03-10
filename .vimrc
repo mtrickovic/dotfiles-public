@@ -38,8 +38,6 @@ autocmd Filetype makefile setlocal noexpandtab " Don't replace tabs with spaces
 autocmd FileType tex,xml setlocal indentexpr=  " Disable automatic code
                                                " indentation when editing TeX
                                                " and XML files.
-autocmd BufWritePre * :%s/\s\+$//e | :%s/\%$/\r/    " Add a new line at the end
-                                                    " of the file beofre saving.
 
 noremap n nzz                   " Center view on the search result.
 noremap <F4> mqggVG=`qzz        " Fix indentation in whole file;
