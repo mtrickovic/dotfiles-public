@@ -5,6 +5,14 @@
 $omp_config = Join-Path $env:POSH_THEMES_PATH ".\powerflow.omp.json"
 oh-my-posh init pwsh --config $omp_config | Invoke-Expression
 
+# Icons
+try {
+    Import-Module Terminal-Icons -ErrorAction Stop
+} catch {
+    Write-Warning "Failed to import the Terminal-Icons module: $_"
+    Write-Host "Run: Install-Module -Name Terminal-Icons -Repository PSGallery"
+}
+
 # PSReadLine
 Set-PSReadLineOption -EditMode Emacs
 Set-PSReadLineOption -BellStyle None
