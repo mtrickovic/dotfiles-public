@@ -16,8 +16,10 @@
 	"word_wrap": true,
 	"wrap_width": 80,
 	"rulers": [80],
-	"font_size": 14,
+    "font_size": 14,
     "show_encoding": true,
+    "show_line_endings": true,
+    "relative_line_numbers": true,
 	"ignored_packages":
 	[
 		"DoxyDoxygen",
