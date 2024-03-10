@@ -34,8 +34,10 @@ $pythonPaths = @(
 
 foreach($path in $pythonPaths) {
     $pythonExecutable = Join-Path $path "python.exe"
+    $pipExecutable = Join-Path $path "Scripts/pip.exe"
     if (Test-Path $pythonExecutable) {
         Set-Alias python $pythonExecutable
+        Set-Alias pip $pipExecutable
         break
     }
 }
