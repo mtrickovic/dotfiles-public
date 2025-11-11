@@ -56,7 +56,7 @@
                 "cursorShape": "filledBox",
                 "font": 
                 {
-                    "face": "JetBrainsMono Nerd Font",
+                    "face": "Terminus (TTF)",
                     "size": 12.0,
                     "weight": "normal"
                 },
@@ -71,7 +71,7 @@
                 "commandline": "%SystemRoot%\\System32\\cmd.exe",
                 "font": 
                 {
-                    "face": "JetBrainsMono Nerd Font"
+                    "face": "Terminus (TTF)"
                 },
                 "guid": "{0caa0dad-35be-5f56-a8ff-afceeeaa6101}",
                 "hidden": false,
@@ -102,7 +102,7 @@
                 "cursorShape": "bar",
                 "font": 
                 {
-                    "face": "JetBrainsMono Nerd Font"
+                    "face": "Terminus (TTF)"
                 },
                 "guid": "{574e775e-4f2a-5b96-ac1e-a2962a402336}",
                 "hidden": false,
