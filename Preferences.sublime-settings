@@ -1,29 +1,48 @@
 {
-	"theme": "GitHub Dimmed.sublime-theme",
-	"color_scheme": "GitHub Dimmed.sublime-color-scheme",
-	"dark_color_scheme": "Mariana.sublime-color-scheme",
-	"light_color_scheme": "Breakers.sublime-color-scheme",
-	"hardware_acceleration": "none",
-	"index_files": true,
-	"font_face": "Monospace",
-	"tab_size": 4,
-	"translate_tabs_to_spaces": true,
-	"detect_indentation": false,
-	"use_tab_stops": false,
-	"indent_to_bracket": true,
-	"ensure_newline_at_eof_on_save": true,
-	"trim_trailing_white_space_on_save": true,
-	"word_wrap": true,
-	"wrap_width": 80,
-	"rulers": [80],
-    "font_size": 14,
-    "show_encoding": true,
+    // Font settings
+    "font_face": "Fira Code",
+    "font_size": 12,
+    "font_options": ["gray_antialias", "subpixel_antialias", "dlig"],
+    "line_padding_top": 3,
+    "line_padding_bottom": 3,
+    
+    // Theme
+    "theme": "ayu-mirage.sublime-theme",
+    "color_scheme": "ayu-mirage.sublime-color-scheme",
+
+    // Editor behavior
+    "rulers": [80, 120],
     "show_line_endings": true,
-    "relative_line_numbers": true,
-	"ignored_packages":
-	[
-		"DoxyDoxygen",
-		"SublimeLinter",
-		"Vintage"
-	],
+    "trim_trailing_white_space_on_save": true,
+    "ensure_newline_at_eof_on_save": true,
+    "translate_tabs_to_spaces": true,
+    "tab_size": 4,
+    "detect_indentation": true,
+
+    // Visual improvements
+    "indent_guide_options": ["draw_active"],
+    "highlight_line": true,
+    "highlight_modified_tabs": true,
+    "draw_minimap_border": true,
+    "always_show_minimap_viewport": true,
+    "show_encoding": true,
+    /*"show_line_endings": true,*/
+
+    // Performance
+    "index_files": true,
+    "index_exclude_patterns": ["*.log", "build/*", ".cache/*"],
+
+    // Code intelligence
+    "auto_complete_triggers": [{"selector": "source.c++", "characters": ".:>",}],
+    "auto_complete_delay": 50,
+
+    // LSP settings (add these for better C++ support)
+    "lsp_format_on_save": true,
+    "lsp_code_actions_on_save": {
+        "source.organizeImports": true,
+    },
+
+    "ignored_packages": [
+        "Vintage",
+    ],
 }
