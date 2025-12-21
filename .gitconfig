@@ -1,12 +1,13 @@
 [core]
-    editor = 'C:/Program Files/Sublime Text/subl.exe' -w
+    editor = nvim
     autocrlf = true
     excludesfile = ~/.gitignore
 [push]
     default = simple
 [user]
     name = Marko Trickovic
-    email = contact@markotrickovic.com
+    email = marko@trickovic.dev
+    signingkey = /home/crafter/.ssh/id_ed25519_signing
 [init]
     defaultBranch = main
 [color]
@@ -48,3 +49,9 @@
     cmd = p4merge \"$BASE\" \"$LOCAL\" \"$REMOTE\" \"$MERGED\"
     trustExitCode = true
 
+[gpg]
+	format = ssh
+[commit]
+	gpgsign = true
+[gpg "ssh"]
+	allowedSignersFile = /home/crafter/.ssh/allowed_signers

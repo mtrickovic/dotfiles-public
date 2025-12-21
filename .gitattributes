@@ -1,0 +1,69 @@
+# =============================================================================
+# Line Ending Configuration for Cross-Platform Dotfiles
+# =============================================================================
+
+# Default: Let Git normalize line endings
+* text=auto
+
+# -----------------------------------------------------------------------------
+# Unix/Linux Configuration Files (always LF)
+# -----------------------------------------------------------------------------
+*.vim text eol=lf
+*.vimrc text eol=lf
+.vimrc text eol=lf
+.bashrc text eol=lf
+.zshrc text eol=lf
+.profile text eol=lf
+.gitconfig text eol=lf
+.gitignore text eol=lf
+.gitattributes text eol=lf
+
+# Shell scripts
+*.sh text eol=lf
+*.bash text eol=lf
+*.zsh text eol=lf
+
+# -----------------------------------------------------------------------------
+# Windows Configuration Files (always CRLF)
+# -----------------------------------------------------------------------------
+*.ps1 text eol=crlf
+*.bat text eol=crlf
+*.cmd text eol=crlf
+
+# -----------------------------------------------------------------------------
+# Cross-Platform Text Files (let platform decide)
+# -----------------------------------------------------------------------------
+*.md text
+*.txt text
+*.json text
+*.yaml text
+*.yml text
+*.sublime-settings text
+
+# -----------------------------------------------------------------------------
+# Binary Files (never touch)
+# -----------------------------------------------------------------------------
+# Fonts
+*.ttf binary
+*.otf binary
+*.woff binary
+*.woff2 binary
+
+# Images
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.bmp binary
+
+# Archives
+*.zip binary
+*.tar binary
+*.gz binary
+*.7z binary
+
+# Git internals (should not be tracked, but mark as binary if they are)
+*.pack binary
+*.idx binary
+*.rev binary
