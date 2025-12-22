@@ -1,0 +1,138 @@
+# Alacritty Configuration (TOML format)
+# Location: ~/.config/alacritty/alacritty.toml
+# Updated for latest Alacritty version
+
+[general]
+# Live config reload
+live_config_reload = true
+
+[env]
+TERM = "xterm-256color"
+
+[window]
+# Window dimensions
+dimensions = { columns = 120, lines = 30 }
+
+# Window padding
+padding = { x = 5, y = 5 }
+
+# Window opacity
+opacity = 0.95
+
+# Window title
+title = "Alacritty"
+
+[scrolling]
+# Maximum lines in scrollback
+history = 10000
+
+# Scrolling multiplier
+multiplier = 3
+
+[font]
+# Font size
+size = 9.0
+
+# Normal font
+[font.normal]
+family = "Terminus"
+style = "Regular"
+
+# Bold font
+[font.bold]
+family = "Terminus"
+style = "Bold"
+
+# Italic font
+[font.italic]
+family = "Terminus"
+style = "Italic"
+
+# Bold Italic font
+[font.bold_italic]
+family = "Terminus"
+style = "Bold Italic"
+
+# Font offset
+[font.offset]
+x = 0
+y = 0
+
+# Glyph offset
+[font.glyph_offset]
+x = 0
+y = 0
+
+[colors]
+# Solarized Dark theme
+
+[colors.primary]
+background = "#002b36"
+foreground = "#839496"
+
+[colors.cursor]
+text = "#002b36"
+cursor = "#839496"
+
+[colors.normal]
+black   = "#073642"
+red     = "#dc322f"
+green   = "#859900"
+yellow  = "#b58900"
+blue    = "#268bd2"
+magenta = "#d33682"
+cyan    = "#2aa198"
+white   = "#eee8d5"
+
+[colors.bright]
+black   = "#002b36"
+red     = "#cb4b16"
+green   = "#586e75"
+yellow  = "#657b83"
+blue    = "#839496"
+magenta = "#6c71c4"
+cyan    = "#93a1a1"
+white   = "#fdf6e3"
+
+[cursor]
+# Cursor style: Block, Underline, Beam
+style = "Block"
+
+# Note: Cursor blinking is controlled by the terminal, not the config
+# If you want a static cursor, use style = "Block" without blink settings
+
+# Terminal shell
+[terminal.shell]
+program = "/bin/bash"
+args = ["--login"]
+
+# Key bindings
+[[keyboard.bindings]]
+key = "V"
+mods = "Control|Shift"
+action = "Paste"
+
+[[keyboard.bindings]]
+key = "C"
+mods = "Control|Shift"
+action = "Copy"
+
+[[keyboard.bindings]]
+key = "Plus"
+mods = "Control"
+action = "IncreaseFontSize"
+
+[[keyboard.bindings]]
+key = "Minus"
+mods = "Control"
+action = "DecreaseFontSize"
+
+[[keyboard.bindings]]
+key = "Key0"
+mods = "Control"
+action = "ResetFontSize"
+
+[[keyboard.bindings]]
+key = "Return"
+mods = "Alt"
+action = "ToggleFullscreen"
