@@ -1,57 +1,349 @@
-[core]
-    editor = nvim
-    autocrlf = true
-    excludesfile = ~/.gitignore
-[push]
-    default = simple
+# =============================================================================
+# Git Configuration - Cross-Platform
+# =============================================================================
+# Author: Marko Trickovic <marko@trickovic.dev>
+# Compatible with: Windows, Linux, macOS
+# Last updated: 2025-01-21
+# =============================================================================
+
 [user]
     name = Marko Trickovic
     email = marko@trickovic.dev
-    signingkey = /home/crafter/.ssh/id_ed25519_signing
+    # Note: signingkey path is platform-specific, see includeIf sections below
+
 [init]
     defaultBranch = main
+
+[core]
+    # Editor: Sublime Text with fallback to nvim
+    # Windows: subl -n -w
+    # Linux: subl -n -w or nvim
+    # The includeIf sections below will override this per-platform
+    editor = nvim
+    
+    # Exclude patterns (global gitignore)
+    excludesfile = ~/.gitignore
+    
+    # IMPORTANT: Don't use autocrlf when you have .gitattributes!
+    # Let .gitattributes handle line endings
+    autocrlf = false
+    
+    # Detect file renames
+    renames = true
+    
+    # Use parallel processing for better performance
+    preloadindex = true
+    fscache = true
+
+[push]
+    # Push current branch to upstream branch of same name
+    default = simple
+    
+    # Push tags along with commits (be careful!)
+    followTags = false
+    
+    # Prevent accidental force push
+    # Use --force-with-lease instead
+    # force = false  # Uncomment if you want to prevent force push
+
+[pull]
+    # Default pull behavior: rebase instead of merge
+    # Keeps history cleaner
+    rebase = true
+    
+    # Only allow fast-forward pulls when not rebasing
+    ff = only
+
+[fetch]
+    # Automatically prune deleted remote branches
+    prune = true
+    
+    # Fetch all tags
+    tags = true
+
+[rebase]
+    # Automatically stash/unstash when rebasing
+    autoStash = true
+    
+    # Use shorter commit hashes in rebase todos
+    abbreviateCommands = true
+
+[merge]
+    # Use better merge conflict style
+    conflictstyle = diff3
+    
+    # Default merge tool (overridden per-platform below)
+    tool = vimdiff
+
+[diff]
+    # Better diff algorithm
+    algorithm = histogram
+    
+    # Detect renames and copies
+    renames = copies
+    
+    # Use color in diffs
+    colorMoved = default
+    
+    # Default diff tool (overridden per-platform below)
+    tool = vimdiff
+
 [color]
+    # Enable colors in terminal
+    ui = auto
     status = auto
     diff = auto
     branch = auto
     interactive = auto
     grep = auto
-    ui = auto
+
+[color "branch"]
+    current = yellow reverse
+    local = yellow
+    remote = green
+
+[color "diff"]
+    meta = yellow bold
+    frag = magenta bold
+    old = red bold
+    new = green bold
+
+[color "status"]
+    added = green
+    changed = yellow
+    untracked = red
+
+[commit]
+    # Sign commits with SSH key
+    gpgsign = true
+    
+    # Show diff when writing commit message
+    verbose = true
+
+[gpg]
+    format = ssh
+
+# Note: SSH signing paths are platform-specific
+# See includeIf sections below for actual paths
+
+[log]
+    # Show dates in relative format (e.g., "2 hours ago")
+    date = relative
+    
+    # Abbreviate commit hashes
+    abbrevCommit = true
+
+[status]
+    # Show untracked files in directories
+    showUntrackedFiles = all
+    
+    # Show submodule summary
+    submoduleSummary = true
+
+[help]
+    # Autocorrect typos after 1 second
+    autocorrect = 10
+
+# =============================================================================
+# Aliases - Organized by Category
+# =============================================================================
+
 [alias]
-    d = diff
-    ds = diff --staged
+    # -----------------------------------
+    # Basic Shortcuts
+    # -----------------------------------
+    st = status
+    br = branch
     co = checkout
     ci = commit
     ca = commit -a
-    ps = "!git push origin $(git rev-parse --abbrev-ref HEAD)"
-    pl = "!git pull origin $(git rev-parse --abbrev-ref HEAD)"
-    st = status
-    br = branch
+    cm = commit -m
+    cam = commit -am
+    
+    # -----------------------------------
+    # Branch Management
+    # -----------------------------------
     ba = branch -a
+    bd = branch -d
+    bD = branch -D
     bm = branch --merged
     bn = branch --no-merged
+    
+    # Switch to main/master
+    main = checkout main
+    master = checkout master
+    
+    # Create and switch to new branch
+    cob = checkout -b
+    
+    # -----------------------------------
+    # Diff & Changes
+    # -----------------------------------
+    d = diff
+    ds = diff --staged
+    dc = diff --cached
+    dt = difftool
+    
+    # Show what changed in last commit
     changes = log -n1 -p --format=fuller
+    
+    # Show files changed in last commit
+    changed = diff-tree --no-commit-id --name-only -r HEAD
+    
+    # -----------------------------------
+    # Commit Management
+    # -----------------------------------
     amend = commit --amend -C HEAD
-    undo = clean -f -d
+    amendf = commit --amend --no-edit
+    fixup = commit --fixup
+    
+    # Undo last commit but keep changes
     undoci = reset HEAD~1
+    
+    # Undo last commit and discard changes (DANGEROUS!)
+    undohard = reset --hard HEAD~1
+    
+    # -----------------------------------
+    # Staging
+    # -----------------------------------
     unstage = reset HEAD --
+    unadd = reset HEAD --
+    
+    # Stage all changes including deletions
+    aa = add -A
+    
+    # Interactive staging
+    ap = add -p
+    
+    # -----------------------------------
+    # Push/Pull
+    # -----------------------------------
+    # Push current branch to origin
+    ps = "!git push origin $(git rev-parse --abbrev-ref HEAD)"
+    
+    # Pull current branch from origin
+    pl = "!git pull origin $(git rev-parse --abbrev-ref HEAD)"
+    
+    # Force push with lease (safer than --force)
+    psf = push --force-with-lease
+    
+    # -----------------------------------
+    # Stash
+    # -----------------------------------
+    # Quick stash with message
+    save = stash save
+    
+    # Pop latest stash
+    pop = stash pop
+    
+    # List all stashes
+    stashes = stash list
+    
+    # -----------------------------------
+    # Log & History (Beautiful Views)
+    # -----------------------------------
+    # One-line log with graph
     lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+    
+    # Detailed log with graph
     hist = log --pretty=format:\"%Cgreen%h %Creset%cd %Cblue[%cn] %Creset%s%C(yellow)%d%C(reset)\" --graph --date=relative --decorate --all
+    
+    # Full log with file changes
     lg-full = log --name-status --pretty=fuller
-[diff]
-    tool = p4merge
-[difftool "p4merge"]
-    cmd = p4merge \"$LOCAL\" \"$REMOTE\"
-    trustExitCode = true
-[merge]
-    tool = p4merge
-[mergetool "p4merge"]
-    cmd = p4merge \"$BASE\" \"$LOCAL\" \"$REMOTE\" \"$MERGED\"
-    trustExitCode = true
+    
+    # Log with patches
+    lp = log -p
+    
+    # Today's commits
+    today = log --since='midnight' --author='Marko Trickovic' --oneline
+    
+    # Last 10 commits
+    last = log -10 --oneline --decorate
+    
+    # Who contributed what
+    who = shortlog -sn --
+    
+    # -----------------------------------
+    # Search & Find
+    # -----------------------------------
+    # Search in commit messages
+    find = "!git log --all --grep"
+    
+    # Search in code
+    grep = grep -Ii
+    
+    # Find branches containing commit
+    fb = "!f() { git branch -a --contains $1; }; f"
+    
+    # Find tags containing commit
+    ft = "!f() { git describe --always --contains $1; }; f"
+    
+    # -----------------------------------
+    # Cleanup
+    # -----------------------------------
+    # Clean untracked files and directories
+    undo = clean -f -d
+    
+    # Dry run of clean
+    dry = clean -n -d
+    
+    # Remove merged branches (except main/master)
+    bclean = "!f() { git branch --merged ${1-main} | grep -v " ${1-main}$" | xargs git branch -d; }; f"
+    
+    # -----------------------------------
+    # Information
+    # -----------------------------------
+    # List all aliases
+    aliases = "!git config --get-regexp ^alias\\. | sed -e s/^alias\\.// -e s/\\ /\\ =\\ /"
+    
+    # Show current branch
+    current = rev-parse --abbrev-ref HEAD
+    
+    # Show repository root
+    root = rev-parse --show-toplevel
+    
+    # File size of repo
+    size = count-objects -vH
+    
+    # Contributors
+    contributors = shortlog -sn
+    
+    # -----------------------------------
+    # Useful Workflows
+    # -----------------------------------
+    # Checkout previous branch
+    back = checkout -
+    
+    # Sync with remote (fetch + prune)
+    sync = fetch --all --prune
+    
+    # Update main branch
+    up = "!git checkout main && git pull origin main"
+    
+    # Quick commit and push
+    qcp = "!f() { git add -A && git commit -m \"$1\" && git push; }; f"
 
-[gpg]
-	format = ssh
-[commit]
-	gpgsign = true
-[gpg "ssh"]
-	allowedSignersFile = /home/crafter/.ssh/allowed_signers
+# =============================================================================
+# Platform-Specific Settings
+# =============================================================================
+
+# Linux Configuration
+[includeIf "gitdir/i:C:/"]
+    # This will NOT match on Linux (no C: drive)
+    # So Linux will use the settings below
+
+[includeIf "gitdir/i:/home/"]
+    # This matches Linux paths
+    path = ~/.gitconfig-linux
+
+# Windows Configuration  
+[includeIf "gitdir/i:C:/"]
+    path = ~/.gitconfig-windows
+
+# macOS Configuration
+[includeIf "gitdir/i:/Users/"]
+    path = ~/.gitconfig-macos
+
+# =============================================================================
+# End of main .gitconfig
+# =============================================================================

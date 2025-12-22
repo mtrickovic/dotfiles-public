@@ -1,0 +1,59 @@
+# =============================================================================
+# Git Configuration - Linux Specific
+# =============================================================================
+# This file is included when on Linux systems
+# =============================================================================
+
+[core]
+    # Editor: Try Sublime Text first, fall back to nvim
+    # Install sublime text and make sure 'subl' is in PATH
+    # Or use: editor = /usr/bin/subl -n -w
+    editor = nvim
+
+[user]
+    # SSH signing key (Linux path)
+    signingkey = ~/.ssh/id_ed25519_signing
+
+[gpg "ssh"]
+    allowedSignersFile = ~/.ssh/allowed_signers
+
+[diff]
+    # Use nvim for diffs (if you prefer GUI, install meld: tool = meld)
+    tool = vimdiff
+
+[difftool "vimdiff"]
+    cmd = nvim -d \"$LOCAL\" \"$REMOTE\"
+    trustExitCode = true
+
+[difftool "subl"]
+    cmd = subl --wait --new-window \"$LOCAL\" \"$REMOTE\"
+    trustExitCode = true
+
+[merge]
+    # Use nvim for merges (if you prefer GUI, install meld: tool = meld)
+    tool = vimdiff
+
+[mergetool "vimdiff"]
+    cmd = nvim -d \"$LOCAL\" \"$REMOTE\" \"$MERGED\"
+    trustExitCode = true
+
+[mergetool "subl"]
+    cmd = subl --wait --new-window \"$MERGED\"
+    trustExitCode = true
+
+# Uncomment if you have meld installed (better GUI experience)
+# [diff]
+#     tool = meld
+# [merge]
+#     tool = meld
+
+# =============================================================================
+# Linux-specific aliases
+# =============================================================================
+
+[alias]
+    # Open file manager in repo root
+    explore = "!xdg-open \"$(git rev-parse --show-toplevel)\""
+    
+    # Open GitHub repo in browser (if you use GitHub)
+    # github = "!xdg-open $(git remote get-url origin | sed 's/git@github.com:/https:\\/\\/github.com\\//' | sed 's/.git$//')"

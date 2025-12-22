@@ -1,0 +1,70 @@
+# =============================================================================
+# Git Configuration - Windows Specific
+# =============================================================================
+# This file is included when on Windows systems
+# =============================================================================
+
+[core]
+    # Editor: Sublime Text on Windows
+    # Make sure Sublime Text is installed and 'subl' is in PATH
+    # Alternative: Use full path like "C:/Program Files/Sublime Text/subl.exe" -n -w
+    editor = subl -n -w
+    
+    # Windows-specific: Improve performance
+    fscache = true
+    preloadindex = true
+    
+    # Symlinks on Windows (requires admin or Developer Mode)
+    symlinks = true
+
+[user]
+    # SSH signing key (Windows path)
+    # Note: Use forward slashes even on Windows
+    signingkey = C:/Users/crafter/.ssh/id_ed25519_signing
+
+[gpg "ssh"]
+    # Allowed signers (Windows path)
+    allowedSignersFile = C:/Users/crafter/.ssh/allowed_signers
+
+[diff]
+    # Use Sublime Merge or P4Merge if available
+    tool = p4merge
+
+[difftool "p4merge"]
+    cmd = p4merge \"$LOCAL\" \"$REMOTE\"
+    trustExitCode = true
+
+[difftool "subl"]
+    cmd = subl --wait --new-window \"$LOCAL\" \"$REMOTE\"
+    trustExitCode = true
+
+[difftool "smerge"]
+    cmd = smerge mergetool \"$BASE\" \"$LOCAL\" \"$REMOTE\" -o \"$MERGED\"
+    trustExitCode = true
+
+[merge]
+    tool = p4merge
+
+[mergetool "p4merge"]
+    cmd = p4merge \"$BASE\" \"$LOCAL\" \"$REMOTE\" \"$MERGED\"
+    trustExitCode = true
+    keepBackup = false
+
+[mergetool "subl"]
+    cmd = subl --wait --new-window \"$MERGED\"
+    trustExitCode = true
+
+[mergetool "smerge"]
+    cmd = smerge mergetool \"$BASE\" \"$LOCAL\" \"$REMOTE\" -o \"$MERGED\"
+    trustExitCode = true
+
+# =============================================================================
+# Windows-specific aliases
+# =============================================================================
+
+[alias]
+    # Open file explorer in repo root
+    explore = "!start \"$(git rev-parse --show-toplevel)\""
+    
+    # Open GitHub repo in browser (if you use GitHub)
+    # github = "!start $(git remote get-url origin | sed 's/git@github.com:/https:\\/\\/github.com\\//' | sed 's/.git$//')"
