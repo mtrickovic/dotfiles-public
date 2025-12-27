@@ -67,3 +67,7 @@
 *.pack binary
 *.idx binary
 *.rev binary
+
+# Fonts - binary files
+*ttf binary
+*.otf binary
