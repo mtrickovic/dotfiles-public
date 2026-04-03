@@ -20,11 +20,11 @@
 [user]
     # SSH signing key (Windows path)
     # Note: Use forward slashes even on Windows
-    signingkey = C:/Users/crafter/.ssh/id_ed25519_signing
+    signingkey = ~/.ssh/id_ed25519_signing
 
 [gpg "ssh"]
     # Allowed signers (Windows path)
-    allowedSignersFile = C:/Users/crafter/.ssh/allowed_signers
+    allowedSignersFile = ~/.ssh/allowed_signers
 
 [diff]
     # Use Sublime Merge or P4Merge if available
