@@ -2,8 +2,14 @@
 [console]::InputEncoding = [console]::OutputEncoding = New-Object System.Text.UTF8Encoding
 
 # Oh-My-Posh Theme
-$omp_config = Join-Path $env:POSH_THEMES_PATH ".\powerflow.omp.json"
-oh-my-posh init pwsh --config $omp_config | Invoke-Expression
+$env:POSH_THEMES_PATH = Join-Path $env:USERPROFILE "GH\dotfiles"
+$omp_config = Join-Path $env:POSH_THEMES_PATH "powerflow.omp.json"
+
+if (Test-Path $omp_config) {
+    oh-my-posh init pwsh --config $omp_config | Invoke-Expression
+} else {
+    Write-Warning "OMP config not found: $omp_config"
+}
 
 # Icons
 try {
