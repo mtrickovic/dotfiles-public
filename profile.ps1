@@ -62,3 +62,12 @@ function which ($command) {
   Get-Command -Name $command -ErrorAction SilentlyContinue |
     Select-Object -ExpandProperty Path -ErrorAction SilentlyContinue
 }
+
+function touch {
+    param([string]$path)
+    if (Test-Path $path) {
+        (Get-Item $path).LastWriteTime = Get-Date
+    } else {
+        New-Item -ItemType File -Path $path | Out-Null
+    }
+}
