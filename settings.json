@@ -110,7 +110,7 @@
                 "name": "PowerShell",
                 "opacity": 85,
                 "source": "Windows.Terminal.PowershellCore",
-                "useAcrylic": false
+                "useAcrylic": true
             }
         ]
     },
