@@ -36,7 +36,7 @@ A curated collection of configuration files and setup scripts for a productive, 
 
 ```powershell
 # Clone the repository
-git clone https://github.com/mtrickovic/dotfiles-private dotfiles
+git clone https://github.com/mtrickovic/dotfiles-public dotfiles
 cd dotfiles
 
 # Run PowerShell as Administrator
@@ -51,7 +51,7 @@ Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy Unrestricted
 
 ```bash
 # Clone the repository
-git clone https://github.com/mtrickovic/dotfiles-private dotfiles
+git clone https://github.com/mtrickovic/dotfiles-public dotfiles
 cd dotfiles
 
 # Copy configuration files
