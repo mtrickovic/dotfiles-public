@@ -16,7 +16,7 @@ exec --no-startup-id dex --autostart --environment i3
 #for_window [class="scratchpad_term"] floating enable, move scratchpad
 
 # Toggle scratchpad
-bindsym $mod+grave scratchpad show
+bindsym $mod+Shift+minus scratchpad show
 
 # bindsym $mod+shift+minus scratchpad show
 

@@ -8,7 +8,7 @@
     
     // Theme
     "theme": "ayu-mirage.sublime-theme",
-    "color_scheme": "ayu-mirage.sublime-color-scheme",
+    "color_scheme": "Monokai Pro.sublime-color-scheme",
 
     // Editor behavior
     "rulers": [80, 120],
