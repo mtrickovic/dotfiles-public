@@ -19,25 +19,29 @@
 
 [diff]
     # Use nvim for diffs (if you prefer GUI, install meld: tool = meld)
-    tool = vimdiff
+    tool = p4merge
 
-[difftool "vimdiff"]
-    cmd = nvim -d \"$LOCAL\" \"$REMOTE\"
+[difftool "p4merge"]
+    cmd = p4merge \"$LOCAL\" \"$REMOTE\"
     trustExitCode = true
 
 [difftool "subl"]
     cmd = subl --wait --new-window \"$LOCAL\" \"$REMOTE\"
     trustExitCode = true
 
-[merge]
-    # Use nvim for merges (if you prefer GUI, install meld: tool = meld)
-    tool = vimdiff
-
-[mergetool "vimdiff"]
-    cmd = nvim -d \"$LOCAL\" \"$REMOTE\" \"$MERGED\"
+[difftool "smerge"]
+    cmd = smerge mergetool \"$BASE\" \"$LOCAL\" \"$REMOTE\" -o \"$MERGED\"
     trustExitCode = true
 
-[mergetool "subl"]
+[merge]
+    # Use nvim for merges (if you prefer GUI, install meld: tool = meld)
+    tool = p4merge
+
+[mergetool "p4merge"]
+    cmd = p4merge "$BASE" "$LOCAL" "$REMOTE" "$MERGED"
+    trustExitCode = true
+
+[mergetool "p4merge"]
     cmd = subl --wait --new-window \"$MERGED\"
     trustExitCode = true
 

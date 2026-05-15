@@ -42,3 +42,7 @@ alias l='ls -CF --color=auto'
 alias ..='cd ..'
 alias ...='cd ../..'
 alias g='git'
+alias py=python
+alias pre-push="git status && git diff --staged && git log --oneline -5"
+
+export PATH="$HOME/bin/p4merge/bin:$PATH"
