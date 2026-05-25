@@ -53,6 +53,8 @@ vnoremap <F5> :sort i<CR>       " Sort selection or paragraph.
 
 inoremap jj <Esc>               " Exit to Normal mode.
 
+let mapleader = " "
+
 if has('gui_running')
     set background=light        " Set a light background for GUI.
 else
