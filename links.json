@@ -1,0 +1,84 @@
+{
+  "links": [
+    {
+      "comment": "--- Shell ---",
+      "source": "~/GH/dotfiles/.bashrc",
+      "target": "~/.bashrc",
+      "platform": "linux"
+    },
+    {
+      "comment": "--- Git ---",
+      "source": "~/GH/dotfiles/.gitconfig-linux",
+      "target": "~/.gitconfig",
+      "platform": "linux"
+    },
+    {
+      "source": "~/GH/dotfiles/.gitconfig-windows",
+      "target": "~/.gitconfig",
+      "platform": "windows"
+    },
+    {
+      "comment": "--- Vim ---",
+      "source": "~/GH/dotfiles/.vimrc",
+      "target": "~/.vimrc",
+      "platform": "linux"
+    },
+    {
+      "comment": "--- Neovim ---",
+      "source": "~/GH/dotfiles/nvim",
+      "target": "~/.config/nvim",
+      "platform": "linux"
+    },
+    {
+      "source": "~/GH/dotfiles/nvim",
+      "target": "~/AppData/Local/nvim",
+      "platform": "windows"
+    },
+    {
+      "comment": "--- Alacritty ---",
+      "source": "~/GH/dotfiles/.alacritty.toml",
+      "target": "~/.config/alacritty/alacritty.toml",
+      "platform": "linux"
+    },
+    {
+      "source": "~/GH/dotfiles/.alacritty.toml",
+      "target": "~/AppData/Roaming/alacritty/alacritty.toml",
+      "platform": "windows"
+    },
+    {
+      "comment": "--- i3wm (Linux only) ---",
+      "source": "~/GH/dotfiles/i3wm-config",
+      "target": "~/.config/i3/config",
+      "platform": "linux"
+    },
+    {
+      "comment": "--- Polybar (Linux only) ---",
+      "source": "~/GH/dotfiles/polybar",
+      "target": "~/.config/polybar",
+      "platform": "linux"
+    },
+    {
+      "comment": "--- Windows Terminal (Windows only) ---",
+      "source": "~/GH/dotfiles/settings.json",
+      "target": "~/AppData/Local/Packages/Microsoft.WindowsTerminal_8wekyb3d8bbwe/LocalState/settings.json",
+      "platform": "windows"
+    },
+    {
+      "comment": "--- PowerShell (Windows only) ---",
+      "source": "~/GH/dotfiles/profile.ps1",
+      "target": "~/Documents/WindowsPowerShell/Microsoft.PowerShell_profile.ps1",
+      "platform": "windows"
+    },
+    {
+      "comment": "--- Sublime Text ---",
+      "source": "~/GH/dotfiles/Preferences.sublime-settings",
+      "target": "~/.config/sublime-text/Packages/User/Preferences.sublime-settings",
+      "platform": "linux"
+    },
+    {
+      "source": "~/GH/dotfiles/Preferences.sublime-settings",
+      "target": "~/AppData/Roaming/Sublime Text/Packages/User/Preferences.sublime-settings",
+      "platform": "windows"
+    }
+  ]
+}
