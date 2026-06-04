@@ -8,13 +8,17 @@
     },
     {
       "comment": "--- Git ---",
+      "source": "~/GH/dotfiles/.gitconfig",
+      "target": "~/.gitconfig"
+    },
+    {
       "source": "~/GH/dotfiles/.gitconfig-linux",
-      "target": "~/.gitconfig",
+      "target": "~/.gitconfig-linux",
       "platform": "linux"
     },
     {
       "source": "~/GH/dotfiles/.gitconfig-windows",
-      "target": "~/.gitconfig",
+      "target": "~/.gitconfig-windows",
       "platform": "windows"
     },
     {
