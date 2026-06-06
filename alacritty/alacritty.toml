@@ -31,7 +31,7 @@ multiplier = 3
 
 [font]
 # Font size
-size = 9.0
+size = 10.0
 
 # Normal font
 [font.normal]
