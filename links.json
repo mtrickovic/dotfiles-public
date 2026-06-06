@@ -24,8 +24,7 @@
     {
       "comment": "--- Vim ---",
       "source": "~/GH/dotfiles/.vimrc",
-      "target": "~/.vimrc",
-      "platform": "linux"
+      "target": "~/.vimrc"
     },
     {
       "comment": "--- Neovim ---",
@@ -71,6 +70,12 @@
       "comment": "--- PowerShell (Windows only) ---",
       "source": "~/GH/dotfiles/profile.ps1",
       "target": "~/Documents/WindowsPowerShell/Microsoft.PowerShell_profile.ps1",
+      "platform": "windows"
+    },
+    {
+      "comment": "--- PowerShell (Windows only) ---",
+      "source": "~/GH/dotfiles/profile.ps1",
+      "target": "~/Documents/PowerShell/Microsoft.PowerShell_profile.ps1",
       "platform": "windows"
     },
     {
