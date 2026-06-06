@@ -1,4 +1,5 @@
 # alacritty-linux.toml
+[general]
 import = ["~/GH/dotfiles/alacritty/alacritty.toml"]
 
 [terminal.shell]
