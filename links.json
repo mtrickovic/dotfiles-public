@@ -40,12 +40,12 @@
     },
     {
       "comment": "--- Alacritty ---",
-      "source": "~/GH/dotfiles/.alacritty.toml",
+      "source": "~/GH/dotfiles/alacritty/alacritty-linux.toml",
       "target": "~/.config/alacritty/alacritty.toml",
       "platform": "linux"
     },
     {
-      "source": "~/GH/dotfiles/.alacritty.toml",
+      "source": "~/GH/dotfiles/alacritty/alacritty-windows.toml",
       "target": "~/AppData/Roaming/alacritty/alacritty.toml",
       "platform": "windows"
     },

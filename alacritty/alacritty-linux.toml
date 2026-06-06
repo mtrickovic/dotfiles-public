@@ -1,0 +1,6 @@
+# alacritty-linux.toml
+import = ["~/GH/dotfiles/alacritty/alacritty.toml"]
+
+[terminal.shell]
+program = "/bin/bash"
+args = ["--login"]

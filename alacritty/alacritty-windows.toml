@@ -1,0 +1,6 @@
+# alacritty-windows.toml
+import = ["~/GH/dotfiles/alacritty/alacritty.toml"]
+
+[terminal.shell]
+program = "pwsh"
+args = []
