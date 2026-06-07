@@ -1,82 +1,82 @@
 {
-    "$help": "https://aka.ms/terminal-documentation",
-    "$schema": "https://aka.ms/terminal-profiles-schema",
-
-    "actions": [
-        {
-            "command": { "action": "copy", "singleLine": false },
-            "keys": "ctrl+c"
-        },
-        {
-            "command": "paste",
-            "keys": "ctrl+v"
-        },
-        {
-            "command": {
-                "action": "splitPane",
-                "split": "auto",
-                "splitMode": "duplicate"
-            },
-            "keys": "alt+shift+d"
-        },
-        {
-            "command": "find",
-            "keys": "ctrl+shift+f"
-        }
-    ],
-
+    "actions": [],
     "autoHideWindow": false,
     "copyFormatting": "none",
     "copyOnSelect": false,
-
     "defaultProfile": "{574e775e-4f2a-5b96-ac1e-a2962a402336}",
     "firstWindowPreference": "defaultProfile",
-
-    "newTabMenu": [
-        { "type": "remainingProfiles" }
+    "keybindings":
+    [
+        {
+            "id": "Terminal.CopyToClipboard",
+            "keys": "ctrl+c"
+        },
+        {
+            "id": "Terminal.PasteFromClipboard",
+            "keys": "ctrl+v"
+        },
+        {
+            "id": "Terminal.FindText",
+            "keys": "ctrl+shift+f"
+        },
+        {
+            "id": "Terminal.DuplicatePaneAuto",
+            "keys": "alt+shift+d"
+        }
     ],
-
-    "profiles": {
-        "defaults": {
+    "newTabMenu":
+    [
+        {
+            "type": "remainingProfiles"
+        }
+    ],
+    "profiles":
+    {
+        "defaults":
+        {
             "colorScheme": "Campbell Powershell",
             "cursorShape": "bar",
-            "font": {
-                "face": "Terminus (TTF)",
-                "size": 12.0,
+            "font":
+            {
+                "face": "JetBrainsMono Nerd Font Mono",
+                "size": 10,
                 "weight": "normal"
             },
             "opacity": 85,
-            "useAcrylic": true,
-            "useAtlasEngine": true
+            "useAcrylic": true
         },
-
-        "list": [
+        "list":
+        [
             {
                 "guid": "{574e775e-4f2a-5b96-ac1e-a2962a402336}",
-                "name": "PowerShell",
-                "source": "Windows.Terminal.PowershellCore",
                 "hidden": false,
-                "intenseTextStyle": "bright"
+                "intenseTextStyle": "bright",
+                "name": "PowerShell",
+                "source": "Windows.Terminal.PowershellCore"
             },
             {
                 "guid": "{61c54bbd-c2c6-5271-96e7-009a87ff44bf}",
-                "name": "Windows PowerShell",
-                "commandline": "%SystemRoot%\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
                 "hidden": false,
-                "cursorShape": "filledBox",
-                "opacity": 80
+                "commandline": "%SystemRoot%\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+                "name": "Windows PowerShell"
             },
             {
                 "guid": "{0caa0dad-35be-5f56-a8ff-afceeeaa6101}",
-                "name": "Command Prompt",
+                "hidden": false,
                 "commandline": "%SystemRoot%\\System32\\cmd.exe",
-                "hidden": false
+                "name": "Command Prompt"
             },
             {
-                "guid": "{51855cb2-8cce-5362-8f54-464b92b32386}",
-                "name": "Ubuntu",
-                "source": "CanonicalGroupLimited.Ubuntu_79rhkp1fndgsc",
-                "hidden": false
+                "guid": "{d9eede6e-4864-5675-a647-810542c22a78}",
+                "hidden": false,
+                "name": "Developer Command Prompt for VS 18",
+                "source": "Windows.Terminal.VisualStudio"
+            },
+            {
+                "guid": "{650b1372-8ac7-5486-9482-1dc4b3668060}",
+                "hidden": false,
+                "name": "Developer PowerShell for VS 18",
+                "source": "Windows.Terminal.VisualStudio"
             }
         ]
     },
