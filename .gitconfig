@@ -62,9 +62,7 @@
     tags = true
 
 [url "git@github.com:"]
-    # Force SSH instead of HTTPS for all GitHub operations
-    # Ensures SSH key auth is used everywhere (clone, push, pull)
-    insteadOf = https://github.com/
+    pushInsteadOf = https://github.com/
 
 [rebase]
     # Automatically stash/unstash when rebasing
