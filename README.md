@@ -1,10 +1,52 @@
 # Dotfiles Repository
 
-![PowerShell](https://img.shields.io/badge/PowerShell-5391FE?style=for-the-badge&logo=powershell&logoColor=white)
-![Git](https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white)
-![Windows Terminal](https://img.shields.io/badge/Windows%20Terminal-4D4D4D?style=for-the-badge&logo=windows-terminal&logoColor=white)
-![Neovim](https://img.shields.io/badge/Neovim-57A143?style=for-the-badge&logo=neovim&logoColor=white)
-![License](https://img.shields.io/badge/license-MIT-green?style=for-the-badge)
+![PowerShell][badge-ps]
+![Git][badge-git]
+![Windows Terminal][badge-wt]
+![Neovim][badge-nvim]
+![License][badge-license]
+
+<!-- MarkdownTOC -->
+
+- [Contents](#contents)
+   - [Configuration Files](#configuration-files)
+   - [Scripts](#scripts)
+- [Quick Start](#quick-start)
+   - [Windows Installation](#windows-installation)
+   - [Linux Installation](#linux-installation)
+- [Requirements](#requirements)
+   - [Essential](#essential)
+   - [Recommended](#recommended)
+   - [Optional Tools](#optional-tools)
+- [Configuration Details](#configuration-details)
+   - [Git Configuration](#git-configuration)
+   - [Line Endings](#line-endings)
+   - [PowerShell Profile](#powershell-profile)
+   - [Vim/Neovim Configuration](#vimneovim-configuration)
+   - [Windows Terminal](#windows-terminal)
+   - [Fonts](#fonts)
+- [Repository Structure](#repository-structure)
+- [Usage](#usage)
+   - [Git Aliases](#git-aliases)
+   - [PowerShell Aliases](#powershell-aliases)
+   - [Customization](#customization)
+- [Platform-Specific Notes](#platform-specific-notes)
+   - [Windows](#windows)
+   - [Linux](#linux)
+- [Troubleshooting](#troubleshooting)
+   - [PowerShell profile not loading](#powershell-profile-not-loading)
+   - [Fonts not displaying](#fonts-not-displaying)
+   - [SSH commit signing issues](#ssh-commit-signing-issues)
+- [Migration from Old Config](#migration-from-old-config)
+- [Updates and Maintenance](#updates-and-maintenance)
+   - [Pulling Latest Changes](#pulling-latest-changes)
+   - [Rerunning Setup \(Windows\)](#rerunning-setup-windows)
+   - [Syncing Across Machines](#syncing-across-machines)
+- [Contributing](#contributing)
+- [License](#license)
+- [Acknowledgments](#acknowledgments)
+
+<!-- /MarkdownTOC -->
 
 A curated collection of configuration files and setup scripts for a productive, cross-platform development environment.
 
@@ -26,7 +68,7 @@ A curated collection of configuration files and setup scripts for a productive, 
 ### Scripts
 
 - **setup.ps1** - Automated installation and configuration (Windows)
-- **install_font.ps1** - Terminus font installer (Windows)
+- **install_fonts.ps1** - Fonts installer (Windows)
 
 ---
 
@@ -36,29 +78,26 @@ A curated collection of configuration files and setup scripts for a productive, 
 
 ```powershell
 # Clone the repository
-git clone https://github.com/mtrickovic/dotfiles-public dotfiles
+git clone https://github.com/mtrickovic/dotfiles-public.git dotfiles
 cd dotfiles
 
-# Run PowerShell as Administrator
-# Allow script execution
+# Run as Administrator
 Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy Unrestricted
 
-# Run setup script
-.\setup.ps1 -InstallPackages
+.\scripts\windows\setup.ps1 -InstallPackages # Install packages + fonts
+.\scripts\windows\setup.ps1 -DryRun          # Preview symlinks
+.\scripts\windows\setup.ps1                  # Create symlinks
 ```
 
 ### Linux Installation
 
 ```bash
 # Clone the repository
-git clone https://github.com/mtrickovic/dotfiles-public dotfiles
+git clone https://github.com/mtrickovic/dotfiles-public.git dotfiles
 cd dotfiles
 
-# Copy configuration files
-cp .gitconfig ~/.gitconfig
-cp .gitconfig-linux ~/.gitconfig-linux
-cp .vimrc ~/.vimrc
-cp -r nvim ~/.config/
+# Use dotmap-cli to create symlinks from links.json
+dotmap link
 ```
 
 ---
@@ -89,10 +128,10 @@ cp -r nvim ~/.config/
 
 ### Git Configuration
 
-The Git configuration is split into multiple files for cross-platform compatibility:
+Split into multiple files for cross-platform compatibility:
 
 - **`.gitconfig`** - Main configuration (works on all platforms)
-- **`.gitconfig-linux`** - Linux-specific overrides
+- **`.gitconfig-linux`** - Linux-specific overrides (editor, diff tool)
 - **`.gitconfig-windows`** - Windows-specific overrides
 
 Features:
@@ -102,7 +141,8 @@ Features:
 - Platform-specific editor and tool configurations
 - Custom color schemes
 
-**Important:** The main `.gitconfig` uses `includeIf` to load platform-specific configs automatically.
+**Important:** The main `.gitconfig` uses `includeIf` to load platform-specific
+               configs automatically.
 
 ### Line Endings
 
@@ -118,36 +158,30 @@ This ensures files work correctly on both Windows and Linux without conflicts.
 
 Located at `profile.ps1`, includes:
 
-- Custom aliases (g, py, pip, etc.)
-- oh-my-posh integration with powerflow theme
-- Terminal-Icons for pretty file listings
-- PSReadLine configuration for better editing
-- Enhanced ListView style
-
-To activate: The setup script creates a symlink to your PowerShell profile location.
+- Custom aliases (`g`, `py`, `pip`, `subl`)
+- oh-my-posh with powerflow theme
+- Terminal-Icons, PSReadLine
 
 ### Vim/Neovim Configuration
 
 - **`.vimrc`** - Main Vim configuration
-- **`nvim/init.vim`** - Neovim configuration (sources .vimrc)
+- **`nvim/init.lua`** - Neovim configuration with lazy.nvim plugin manager
 - **`nvim/colors/solarized_true.vim`** - Solarized color scheme
-
-Features:
-- Line numbers and syntax highlighting
-- Solarized dark theme
-- UTF-8 encoding
-- Unix line endings
 
 ### Windows Terminal
 
-The `settings.json` includes:
+- `JetBrainsMono Nerd Font Mono` (installed via `setup.ps1 -InstallPackages`)
+- Campbell PowerShell color scheme
+- Opacity + acrylic background
 
-- Custom color schemes
-- Font configuration (works with Nerd Fonts)
-- Default profile settings
-- Keybindings
+### Fonts
 
-**Location:** Copy to `%LOCALAPPDATA%\Packages\Microsoft.WindowsTerminal_8wekyb3dbbwe\LocalState\`
+JetBrainsMono Nerd Font is installed automatically via:
+
+```pwsh
+.\scripts\windows\setup.ps1 -InstallPackages
+```
+Which runs `oh-my-posh font install JetBrainsMono` after winget packages.
 
 ---
 
@@ -155,24 +189,49 @@ The `settings.json` includes:
 
 ```
 dotfiles/
-├── .gitconfig                 # Main Git config (cross-platform)
-├── .gitconfig-linux          # Linux-specific Git settings
-├── .gitconfig-windows        # Windows-specific Git settings
-├── .gitattributes            # Line ending configuration
-├── .vimrc                    # Vim configuration
-├── profile.ps1               # PowerShell profile
-├── setup.ps1                 # Windows setup script
-├── install_font.ps1          # Font installer (Windows)
-├── settings.json             # Windows Terminal config
-├── powerflow.omp.json        # oh-my-posh theme
-├── Preferences.sublime-settings  # Sublime Text settings
+├── .bashrc                         # Bash configuration (Linux)
+├── .gitconfig                      # Main Git config (cross-platform)
+├── .gitconfig-linux                # Linux-specific Git settings
+├── .gitconfig-windows              # Windows-specific Git settings
+├── .gitattributes                  # Line ending configuration
+├── .gitignore                      # Git ignore rules
+├── .vimrc                          # Vim configuration
+├── i3wm-config                     # i3 window manager config (Linux)
+├── profile.ps1                     # PowerShell profile
+├── settings.json                   # Windows Terminal config
+├── powerflow.omp.json              # oh-my-posh theme
+├── Preferences.sublime-settings    # Sublime Text settings
+├── links.json                      # Symlink definitions (dotmap-cli)
+├── alacritty/
+│   ├── alacritty.toml              # Base Alacritty config
+│   ├── alacritty-linux.toml        # Linux overrides
+│   └── alacritty-windows.toml      # Windows overrides
 ├── nvim/
-│   ├── init.vim              # Neovim configuration
+│   ├── init.lua                    # Neovim configuration
 │   └── colors/
-│       └── solarized_true.vim  # Color scheme
-├── Terminus_TTF_Font_Family_(Fontmirror)/
-│   └── *.ttf                 # Terminus font files
-└── README.md                 # This file
+│       └── solarized_true.vim      # Color scheme
+├── polybar/
+│   ├── config.ini                  # Polybar configuration
+│   ├── launch_polybar.sh           # Polybar launch script
+│   └── thermald-status.sh          # Temperature status script
+├── rofi/
+│   ├── config.rasi                 # Rofi configuration
+│   └── catppuccin-mocha.rasi       # Catppuccin Mocha theme
+├── fonts/
+│   ├── FiraCode/
+│   ├── SourceCodePro/
+│   └── Terminus/
+├── images/                         # Screenshots / assets
+└── scripts/
+    ├── windows/
+    │   ├── setup.ps1               # Install packages + symlinks
+    │   ├── firewall.ps1            # Hardening firewall inbound rules
+    │   └── install_fonts.ps1       # Font installer
+    └── linux/
+        ├── pomodoro.sh
+        ├── music.sh
+        ├── thermald.sh
+        └── kernel-trace-full.sh
 ```
 
 ---
@@ -233,22 +292,16 @@ subl           # sublime text (if installed)
 
 ## Troubleshooting
 
-### Git includeIf not working
-
-- Ensure Git version is 2.13 or higher: `git --version`
-- Check that platform-specific files exist in home directory
-- Verify paths in `.gitconfig` match your system
-
 ### PowerShell profile not loading
 
 - Check profile location: `$PROFILE`
 - Verify execution policy: `Get-ExecutionPolicy`
-- Ensure symlink was created correctly
+- Verify symlink was created correctly
 
-### Fonts not displaying correctly
+### Fonts not displaying
 
-- Install a Nerd Font (e.g., FiraCode Nerd Font, Cascadia Code Nerd Font)
-- Configure terminal to use the Nerd Font
+- Ensure JetBrainsMono Nerd Font is installed
+- Set font in Windows Terminal Settings -> Profile -> Appearance
 - Restart terminal after font installation
 
 ### SSH commit signing issues
@@ -295,7 +348,7 @@ git pull origin main
 ### Rerunning Setup (Windows)
 
 ```powershell
-.\setup.ps1 -InstallPackages
+.\scripts\windows\setup.ps1 -InstallPackages
 ```
 
 This will update symlinks and reinstall packages if needed.
@@ -371,3 +424,9 @@ SOFTWARE.
 **Author:** Marko Trickovic
 **GitHub:** [@mtrickovic](https://github.com/mtrickovic)
 **Email:** marko@trickovic.dev
+
+[badge-ps]: https://img.shields.io/badge/PowerShell-5391FE?style=for-the-badge&logo=powershell&logoColor=white
+[badge-git]: https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white
+[badge-wt]: https://img.shields.io/badge/Windows%20Terminal-4D4D4D?style=for-the-badge&logo=windows-terminal&logoColor=white
+[badge-nvim]: https://img.shields.io/badge/Neovim-57A143?style=for-the-badge&logo=neovim&logoColor=white
+[badge-license]: https://img.shields.io/badge/license-MIT-green?style=for-the-badge
