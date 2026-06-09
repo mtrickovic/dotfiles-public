@@ -3,5 +3,8 @@
 import = ["~/GH/dotfiles/alacritty/alacritty.toml"]
 
 [terminal.shell]
-program = "pwsh"
-args = []
+program = "C:\\Program Files\\Git\\bin\\bash.exe"
+args = ["-l"]
+
+[env]
+TERM = "xterm-256color"
