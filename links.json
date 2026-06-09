@@ -3,8 +3,7 @@
     {
       "comment": "--- Shell ---",
       "source": "~/GH/dotfiles/.bashrc",
-      "target": "~/.bashrc",
-      "platform": "linux"
+      "target": "~/.bashrc"
     },
     {
       "comment": "--- Git ---",
