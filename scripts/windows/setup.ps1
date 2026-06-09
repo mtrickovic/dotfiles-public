@@ -102,7 +102,11 @@ function Install-Packages {
         'Perforce.P4Merge',
         'Hibbiki.Chromium',
         'Mozilla.Firefox',
-        'Microsoft.OpenSSH.Preview'
+        'Microsoft.OpenSSH.Preview',
+        'Alacritty.Alacritty',
+        'CPUID.HWMonitor',
+        'koalaman.shellcheck',
+        'arndawg.tmux-windows'
     )
 
     foreach ($pkg in $packages) {
