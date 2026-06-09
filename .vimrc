@@ -38,7 +38,9 @@ autocmd Filetype makefile setlocal noexpandtab " Don't replace tabs with spaces
 autocmd FileType tex,xml setlocal indentexpr=  " Disable automatic code
                                                " indentation when editing TeX
                                                " and XML files.
-autocmd FileType c,cpp setlocal shiftwidth=2 tabstop=2 expandtab
+autocmd FileType c,cpp setlocal shiftwidth=2 tabstop=2 expandtab " C/C++ files
+autocmd FileType sh    setlocal shiftwidth=2 tabstop=2 expandtab " Bash files
+autocmd FileType cmake setlocal shiftwidth=2 tabstop=2 expandtab " CMake files
 
 noremap n nzz                   " Center view on the search result.
 noremap <F4> mqggVG=`qzz        " Fix indentation in whole file;
