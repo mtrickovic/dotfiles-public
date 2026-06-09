@@ -46,3 +46,15 @@ alias py=python
 alias pre-push="git status && git diff --staged && git log --oneline -5"
 
 export PATH="$HOME/bin/p4merge/bin:$PATH"
+
+# Oh-My-Posh Theme
+POSH_THEMES_PATH="${USERPROFILE}/GH/dotfiles"
+omp_config="${POSH_THEMES_PATH}/powerflow.omp.json"
+
+if command -v oh-my-posh &>/dev/null; then
+  if [[ -f "$omp_config" ]]; then
+    eval "$(oh-my-posh init bash --config "$omp_config")"
+  else
+    echo "WARNING: OMP config not found: $omp_config" >&2
+  fi
+fi
