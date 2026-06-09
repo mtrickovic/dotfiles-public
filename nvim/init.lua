@@ -173,4 +173,27 @@ require("lazy").setup({
       })
     end,
   },
+  {
+    "toppair/peek.nvim",
+    event = { "VeryLazy" },
+    build = "deno task --quiet build:fast",
+    config = function()
+      require("peek").setup({
+        app = { "firefox" },
+        -- automatically open preview on markdown file open
+        auto_load = true,
+        -- close preview window on buffer delete
+        close_on_bdelete = true,
+        -- enable syntax highlighting in preview
+        syntax = true,           
+      })
+
+      vim.api.nvim_create_user_command("PeekOpen", require("peek").open, {})
+      vim.api.nvim_create_user_command("PeekClose", require("peek").close, {})
+
+      -- keymaps
+      vim.api.nvim_set_keymap("n", "<leader>mp", "<cmd>PeekOpen<cr>", { noremap = true })
+      vim.api.nvim_set_keymap("n", "<leader>mc", "<cmd>PeekClose<cr>", { noremap = true })
+    end,
+  }
 })
