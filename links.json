@@ -27,6 +27,11 @@
       "target": "~/.vimrc"
     },
     {
+      "comment": "--- Tmux ---",
+      "source": "~/GH/dotfiles/.tmux.conf",
+      "target": "~/.tmux.conf"
+    },
+    {
       "comment": "--- Neovim ---",
       "source": "~/GH/dotfiles/nvim",
       "target": "~/.config/nvim",
