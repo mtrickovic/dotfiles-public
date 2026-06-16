@@ -79,12 +79,14 @@ require("lazy").setup({
       -- 2. Initialize Mason-LSPconfig
       require("mason-lspconfig").setup({
         ensure_installed = { "clangd" },
-	-- The modern way to handle automatic setups dinamically
-	handlers = {
-	  function(server_name)
-	    lspconfig[server_name].setup({})
-	  end,
-	},
+        -- The modern way to handle automatic setups dinamically
+        handlers = {
+          function(server_name)
+            lspconfig[server_name].setup({
+              capabilities = capabilities,
+            })
+          end,
+        },
       })
 
       -- Global LSP Keymaps (Optional but highly recommended)
@@ -109,11 +111,6 @@ require("lazy").setup({
         vim.lsp.buf.code_action,
         { desc = "Code action" }
       )
-      vim.keymap.set(
-        'n', '<leader>rn',
-        vim.lsp.buf.rename,
-        { desc = "Rename symbol" }
-      )
     end,
   },
   {
@@ -137,13 +134,7 @@ require("lazy").setup({
       )
     end,
   },
-  {
-    "folke/tokyonight.nvim",
-    priority = 1000, -- load before other plugins
-    config = function()
-      vim.cmd("colorscheme tokyonight")
-    end,
-  },
+  { "folke/tokyonight.nvim" },
   { "catppuccin/nvim", name = "catppuccin" },
   { "rose-pine/neovim", name = "rose-pine" },
   { "rebelot/kanagawa.nvim" },
@@ -153,23 +144,28 @@ require("lazy").setup({
       "hrsh7th/cmp-nvim-lsp",    -- LSP source
       "hrsh7th/cmp-buffer",      -- words from current buffer
       "hrsh7th/cmp-path",        -- file paths
-    };
+    },
     config = function()
       local cmp = require("cmp")
 
       cmp.setup({
         mapping = cmp.mapping.preset.insert({
-          ["<Tab>"]   = cmp.mapping.select_next_item(),
-          ["<S-Tab>"] = cmp.mapping.select_prev_item(),
-          ["<CR>"]    = cmp.mapping.confirm({ select = true }),
+          ["<Tab>"]     = cmp.mapping.select_next_item(),
+          ["<S-Tab>"]   = cmp.mapping.select_prev_item(),
+          ["<CR>"]      = cmp.mapping.confirm({ select = true }),
           ["<C-Space>"] = cmp.mapping.complete(),
-          ["<C-e>"]   = cmp.mapping.abort()
+          ["<C-e>"]     = cmp.mapping.abort(),
         }),
+
         sources = cmp.config.sources({
           { name = "nvim_lsp" },
           { name = "buffer" },
           { name = "path" },
         }),
+
+        enabled = function()
+          return vim.bo.filetype ~= "markdown"
+        end,
       })
     end,
   },
@@ -195,5 +191,88 @@ require("lazy").setup({
       vim.api.nvim_set_keymap("n", "<leader>mp", "<cmd>PeekOpen<cr>", { noremap = true })
       vim.api.nvim_set_keymap("n", "<leader>mc", "<cmd>PeekClose<cr>", { noremap = true })
     end,
+  },
+  {
+    "craftzdog/solarized-osaka.nvim",
+    lazy = false,
+    priority = 1000,
+    config = function()
+      require("solarized-osaka").setup({
+        transparent = false,
+        terminal_colors = true,
+      })
+
+      vim.cmd.colorscheme("solarized-osaka")
+    end,
+  },
+  {
+    "akinsho/bufferline.nvim",
+    dependencies = {
+      "nvim-tree/nvim-web-devicons",
+    },
+    config = function()
+      require("bufferline").setup({
+        options = {
+          diagnostics = "nvim_lsp",
+          separator_style = "slant",
+          show_buffer_close_icons = false,
+          show_close_icon = false,
+        },
+      })
+
+      vim.keymap.set(
+        "n",
+        "<S-l>",
+        ":BufferLineCycleNext<CR>",
+        { silent = true }
+      )
+
+      vim.keymap.set(
+        "n",
+        "<S-h>",
+        ":BufferLineCyclePrev<CR>",
+        { silent = true }
+      )
+    end,
+  },
+  {
+    "nvim-lualine/lualine.nvim",
+    dependencies = {
+      "nvim-tree/nvim-web-devicons",
+    },
+    config = function()
+      require("lualine").setup({
+        options = {
+          theme = "auto",
+          globalstatus = true,
+        },
+      })
+    end,
+  },
+  {
+    "stevearc/oil.nvim",
+    dependencies = {
+      "nvim-tree/nvim-web-devicons",
+    },
+    config = function()
+      require("oil").setup()
+
+      vim.keymap.set("n", "-", "<CMD>Oil<CR>")
+    end,
   }
 })
+
+vim.keymap.set("n", "<leader>tt", function()
+  vim.cmd("tabnew")
+  vim.cmd("terminal")
+  vim.cmd("startinsert")
+end, {
+  desc = "Open terminal in new tab"
+})
+
+vim.keymap.set(
+  "t",
+  "<Esc><Esc>",
+  [[<C-\><C-n>]],
+  { desc = "Exit terminal mode" }
+)
