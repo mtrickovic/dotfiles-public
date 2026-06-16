@@ -8,6 +8,7 @@
 # -----------------------------------------------------------------------------
 # Unix/Linux Configuration Files (always LF)
 # -----------------------------------------------------------------------------
+# Core dotfiles
 *.vim text eol=lf
 *.vimrc text eol=lf
 .vimrc text eol=lf
@@ -15,18 +16,30 @@
 .zshrc text eol=lf
 .profile text eol=lf
 .gitconfig text eol=lf
+.gitconfig-linux text eol=lf
+.gitconfig-windows text eol=lf
 .gitignore text eol=lf
 .gitattributes text eol=lf
+.tmux.conf text eol=lf
+i3wm-config text eol=lf
+links.json text eol=lf
 
-# Shell scripts
+# Neovim configs
+*.lua text eol=lf
+*.vim text eol=lf
+
+# Terminal & UI configs
+*.toml text eol=lf
+*.ini text eol=lf
+*.rasi text eol=lf
+
+# Shell scripts (Linux)
 *.sh text eol=lf
 *.bash text eol=lf
 *.zsh text eol=lf
-*.ps1 text eol=crlf
-*.bat text eol=crlf
 
 # -----------------------------------------------------------------------------
-# Windows Configuration Files (always CRLF)
+# Windows Configuration Files & Scripts (ALWAYS CRLF)
 # -----------------------------------------------------------------------------
 *.ps1 text eol=crlf
 *.bat text eol=crlf
