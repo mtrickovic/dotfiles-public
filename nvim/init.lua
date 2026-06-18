@@ -116,10 +116,32 @@ require("lazy").setup({
   {
     "nvim-treesitter/nvim-treesitter",
     build = ":TSUpdate",
-    main = "nvim-treesitter",
+
     opts = {
-      ensure_installed = { "c", "cpp" },
-      highlight = { enable = true },
+      ensure_installed = {
+        "bash",
+        "c",
+        "cpp",
+        "cmake",
+        "lua",
+        "vim",
+        "vimdoc",
+        "markdown",
+        "markdown_inline",
+        "query",
+        "json",
+        "toml",
+      },
+
+      auto_install = true,
+
+      highlight = {
+        enable = true,
+      },
+
+      indent = {
+        enable = true,
+      },
     },
   },
   {
@@ -276,3 +298,9 @@ vim.keymap.set(
   [[<C-\><C-n>]],
   { desc = "Exit terminal mode" }
 )
+
+vim.opt.foldmethod = "expr"
+vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+
+vim.opt.foldenable = false
+vim.opt.foldlevel = 99
