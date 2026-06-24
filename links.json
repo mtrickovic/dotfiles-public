@@ -31,6 +31,12 @@
       "target": "~/.tmux.conf"
     },
     {
+      "comment": "--- Tmux plugins ---",
+      "source": "~/GH/dotfiles/tmux",
+      "target": "~/.tmux",
+      "platform": "linux"
+    },
+    {
       "comment": "--- Neovim ---",
       "source": "~/GH/dotfiles/nvim",
       "target": "~/.config/nvim",
