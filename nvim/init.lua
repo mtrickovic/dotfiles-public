@@ -1,5 +1,9 @@
 -- Source legacy vimrc
-vim.cmd("source ~/.vimrc")
+local vimrc = vim.fn.expand("~/.vimrc")
+
+if vim.uv.fs_stat(vimrc) then
+  vim.cmd.source(vimrc)
+end
 
 -- Colorscheme
 if vim.fn.exists("&termguicolors") == 1
