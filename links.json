@@ -66,6 +66,12 @@
       "platform": "windows"
     },
     {
+      "comment": "--- Xterm ---",
+      "source": "~/GH/dotfiles/Xresources",
+      "target": "~/.Xresources",
+      "platform": "linux"
+    },
+    {
       "comment": "--- i3wm (Linux only) ---",
       "source": "~/GH/dotfiles/i3wm-config",
       "target": "~/.config/i3/config",

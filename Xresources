@@ -1,0 +1,188 @@
+! ============================================================
+! xterm configuration — translated from alacritty.toml
+! Location: ~/.Xresources
+! Apply with: xrdb -merge ~/.Xresources
+! ============================================================
+
+
+! ------------------------------------------------------------
+! Window geometry
+! columns x lines  →  geometry (WIDTHxHEIGHT in characters)
+! ------------------------------------------------------------
+xterm*geometry:            120x30
+
+
+! ------------------------------------------------------------
+! Window padding (inner margin in pixels)
+! Alacritty: padding = { x = 5, y = 5 }
+! ------------------------------------------------------------
+xterm*internalBorder:      5
+
+
+! ------------------------------------------------------------
+! Scrollback history
+! Alacritty: history = 10000
+! ------------------------------------------------------------
+xterm*saveLines:           10000
+
+
+! ------------------------------------------------------------
+! Scroll speed multiplier
+! Alacritty: multiplier = 3
+! xterm uses a different model; jumpScroll covers bursts,
+! multiScroll enables smooth multi-line scroll steps.
+! ------------------------------------------------------------
+xterm*jumpScroll:          true
+xterm*multiScroll:         true
+xterm*scrollLines:         3
+
+
+! ------------------------------------------------------------
+! Font
+! Alacritty: JetBrainsMono Nerd Font, size 10
+! xterm uses X logical font names or Xft (FreeType) names.
+! Xft is strongly recommended — it supports Nerd Fonts.
+! ------------------------------------------------------------
+xterm*faceName:            JetBrainsMono Nerd Font
+xterm*faceSize:            10
+xterm*faceNameDoublesize:  JetBrainsMono Nerd Font
+
+! Bold / italic faces (xterm picks these automatically from
+! the family; override only if auto-selection fails)
+xterm*faceName:            JetBrainsMono Nerd Font:style=Regular
+xterm*boldFont:            JetBrainsMono Nerd Font:style=Bold
+xterm*italicFont:          JetBrainsMono Nerd Font:style=Italic
+
+! Enable Xft rendering (required for TTF/OTF fonts)
+xterm*renderFont:          true
+
+! Antialias
+xterm*antialias:           true
+
+
+! ------------------------------------------------------------
+! Window opacity
+! Alacritty: opacity = 0.95
+! xterm itself has no built-in transparency; true composited
+! transparency requires a compositor (picom, xcompmgr).
+! The resource below sets the X11 _NET_WM_WINDOW_OPACITY hint
+! which compositors honour. Value: 0–0xffffffff (0.95 * max)
+! ------------------------------------------------------------
+xterm*opacity:             95
+
+
+! ------------------------------------------------------------
+! Window title
+! Alacritty: title = "Alacritty"
+! ------------------------------------------------------------
+xterm*title:               xterm
+xterm*iconName:            xterm
+
+! Allow programs (e.g. shell PS1, tmux) to set the title
+xterm*allowTitleOps:       true
+
+
+! ------------------------------------------------------------
+! TERM environment variable
+! Alacritty: TERM = "xterm-256color"
+! ------------------------------------------------------------
+xterm*termName:            xterm-256color
+
+
+! ------------------------------------------------------------
+! Cursor style
+! Alacritty: style = "Block"
+! xterm cursorStyle: bar | underline | block
+! ------------------------------------------------------------
+xterm*cursorStyle:         block
+
+! Static cursor (no blink) — matches Alacritty default
+xterm*cursorBlink:         false
+
+
+! ------------------------------------------------------------
+! Shell
+! alacritty-linux.toml: program = "/bin/bash", args = ["--login"]
+! ------------------------------------------------------------
+xterm*loginShell:          true
+
+
+! ------------------------------------------------------------
+! Colors — Solarized Dark
+! Translated directly from [colors] section
+! ------------------------------------------------------------
+
+! Primary
+xterm*background:          #002b36
+xterm*foreground:          #839496
+
+! Cursor
+xterm*cursorColor:         #839496
+!xterm*pointerColor:       #839496
+
+! Normal (0–7)
+xterm*color0:              #073642
+xterm*color1:              #dc322f
+xterm*color2:              #859900
+xterm*color3:              #b58900
+xterm*color4:              #268bd2
+xterm*color5:              #d33682
+xterm*color6:              #2aa198
+xterm*color7:              #eee8d5
+
+! Bright (8–15)
+xterm*color8:              #002b36
+xterm*color9:              #cb4b16
+xterm*color10:             #586e75
+xterm*color11:             #657b83
+xterm*color12:             #839496
+xterm*color13:             #6c71c4
+xterm*color14:             #93a1a1
+xterm*color15:             #fdf6e3
+
+
+! ------------------------------------------------------------
+! Key bindings
+! Alacritty bindings translated to xterm translations
+!
+! Ctrl+Shift+V  → Paste (from clipboard)
+! Ctrl+Shift+C  → Copy  (to clipboard)
+! Ctrl++        → Increase font size
+! Ctrl+-        → Decrease font size
+! Ctrl+0        → Reset font size
+! Alt+Return    → Toggle fullscreen (not natively supported;
+!                 delegate to your WM or omit)
+! ------------------------------------------------------------
+xterm*VT100.translations: #override \n\
+    Ctrl Shift <Key>V:        insert-selection(CLIPBOARD) \n\
+    Ctrl Shift <Key>C:        select-end(CLIPBOARD) \n\
+    Ctrl <Key>plus:           larger-vt-font() \n\
+    Ctrl <Key>minus:          smaller-vt-font() \n\
+    Ctrl <Key>0:              set-vt-font(d)
+
+
+! ------------------------------------------------------------
+! Misc quality-of-life settings
+! (no Alacritty equivalent — xterm defaults worth setting)
+! ------------------------------------------------------------
+
+! Enable 256 colors
+xterm*colorMode:           true
+xterm*dynamicColors:       true
+
+! UTF-8 support
+xterm*utf8:                1
+xterm*locale:              true
+
+! Allow bold colors (not just bold font weight)
+xterm*boldColors:          true
+
+! Disable the pointless audible bell; use visual bell instead
+xterm*bellIsUrgent:        false
+xterm*visualBell:          true
+
+! Right-click menu: disable (cleaner for dev work)
+xterm*omitTranslation:     popup-menu
+
+! Select whole URLs on double-click (handy for compiler output)
+xterm*charClass:           33:48,36-47:48,58-59:48,61:48,63-64:48,95:48,126:48
