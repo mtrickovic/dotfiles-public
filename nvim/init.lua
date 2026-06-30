@@ -71,27 +71,49 @@ require("lazy").setup({
     dependencies = {
       "williamboman/mason.nvim",
       "williamboman/mason-lspconfig.nvim",
+      "p00f/clangd_extensions.nvim",
     },
     config = function()
       local lspconfig = require("lspconfig")
-      local capabilities = require("cmp_nvim_lsp")
-        .default_capabilities()
+      local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
       -- 1. Initialize Mason base
       require("mason").setup()
 
       -- 2. Initialize Mason-LSPconfig
       require("mason-lspconfig").setup({
-        ensure_installed = { "clangd" },
-        -- The modern way to handle automatic setups dinamically
-        handlers = {
-          function(server_name)
-            lspconfig[server_name].setup({
-              capabilities = capabilities,
-            })
-          end,
-        },
-      })
+          ensure_installed = { "clangd" },
+          handlers = {
+            function(server_name)
+              lspconfig[server_name].setup({
+                capabilities = capabilities,
+              })
+            end,
+            -- override just for clangd
+            ["clangd"] = function()
+              require("clangd_extensions").setup({
+                server = { capabilities = capabilities, },
+                extensions = {
+                  inlay_hints = {
+                    inline = true,
+                    only_current_line = false,
+                    show_parameter_hints = true,
+                  },
+                  ast = {
+                    role_icons = {
+                      type = "🄣",
+                      declaration = "🄓",
+                      expression = "🄔",
+                      specifier = "🄢",
+                      statement = "🄚",
+                      ["template argument"] = "🄣",
+                    },
+                  },
+                },
+              })
+            end,
+          },
+        })
 
       -- Global LSP Keymaps (Optional but highly recommended)
       vim.keymap.set(
@@ -330,6 +352,17 @@ require("lazy").setup({
 
         -- toggle
         { "<leader>tt", desc = "Open terminal in new tab" },
+
+        -- additional
+        { "<leader>c", group = "code/cmake" },
+        { "<leader>cc", desc = "CMake configure" },
+        { "<leader>cb", desc = "CMake build" },
+        { "<leader>cr", desc = "CMake run" },
+        { "<leader>cd", desc = "CMake debug" },
+        { "<leader>cs", desc = "CMake select build type" },
+        { "<leader>tf", desc = "Terminal (float)" },
+        { "<leader>th", desc = "Terminal (horizontal)" },
+        { "<leader>tv", desc = "Terminal (vertical)" },
       })
     end,
   },
@@ -394,6 +427,77 @@ require("lazy").setup({
       local cmp_autopairs = require("nvim-autopairs.completion.cmp")
       local cmp = require("cmp")
       cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
+    end,
+  },
+  {
+    "Civitasv/cmake-tools.nvim",
+    ft = { "c", "cpp", "cmake" },
+    dependencies = { "nvim-lua/plenary.nvim" },
+    opts = {
+      cmake_build_directory = "build/${variant:buildType}",
+    },
+    config = function(_, opts)
+      require("cmake-tools").setup(opts)
+
+      vim.keymap.set("n", "<leader>cc", "<cmd>CMakeGenerate<CR>", { desc = "CMake configure" })
+      vim.keymap.set("n", "<leader>cb", "<cmd>CMakeBuild<CR>", { desc = "CMake build" })
+      vim.keymap.set("n", "<leader>cr", "<cmd>CMakeRun<CR>", { desc = "CMake run" })
+      vim.keymap.set("n", "<leader>cd", "<cmd>CMakeDebug<CR>", { desc = "CMake debug" })
+      vim.keymap.set("n", "<leader>cs", "<cmd>CMakeSelectBuildType<CR>", { desc = "CMake select build type" })
+    end,
+  },
+  {
+    "stevearc/conform.nvim",
+    event = { "BufWritePre" },
+    cmd = { "ConformInfo" },
+    opts = {
+      formatters_by_ft = {
+        c = { "clang_format" },
+        cpp = { "clang_format" },
+        sh = { "shfmt" },
+        cmake = { "cmake_format" },
+      },
+      formatters = {
+        shfmt = { args = { "-i", "2" } },
+      },
+      format_on_save = {
+        timeout_ms = 500,
+        lsp_fallback = true,
+      },
+    },
+  },
+  {
+    "mfussenegger/nvim-lint",
+    event = { "BufReadPost", "BufWritePost" },
+    config = function()
+      require("lint").linters_by_ft = {
+        c = { "cppcheck" },
+        cpp = { "cppcheck" },
+        sh = { "shellcheck" },
+      }
+
+      vim.api.nvim_create_autocmd({ "BufWritePost" }, {
+        callback = function()
+          require("lint").try_lint()
+        end,
+      })
+    end,
+  },
+  {
+    "akinsho/toggleterm.nvim",
+    version = "*",
+    event = "VeryLazy",
+    opts = {
+      open_mapping = [[<C-\>]],
+      direction = "float",
+      float_opts = { border = "curved" },
+    },
+    config = function(_, opts)
+      require("toggleterm").setup(opts)
+
+      vim.keymap.set("n", "<leader>tf", "<cmd>ToggleTerm direction=float<CR>", { desc = "Terminal (float)" })
+      vim.keymap.set("n", "<leader>th", "<cmd>ToggleTerm direction=horizontal<CR>", { desc = "Terminal (horizontal)" })
+      vim.keymap.set("n", "<leader>tv", "<cmd>ToggleTerm direction=vertical<CR>", { desc = "Terminal (vertical)" })
     end,
   }
 })
