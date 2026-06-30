@@ -285,6 +285,116 @@ require("lazy").setup({
 
       vim.keymap.set("n", "-", "<CMD>Oil<CR>")
     end,
+  },
+  {
+    "folke/which-key.nvim",
+    event = "VeryLazy",
+    opts = {
+      preset = "modern",
+      delay = 300,
+    },
+    config = function(_, opts)
+      local wk = require("which-key")
+      wk.setup(opts)
+      wk.add({
+        -- groups
+        { "<leader>f", group = "find" },    -- telescope
+        { "<leader>g", group = "git" },     -- gitsigns
+        { "<leader>m", group = "markdown" },-- peek.nvim
+        { "<leader>t", group = "toggle" },  -- terminal/toggles
+
+        -- telescope (find group)
+        { "<leader>ff", desc = "Find files" },
+        { "<leader>fg", desc = "Live grep" },
+        { "<leader>fb", desc = "Find buffers" },
+        { "<leader>ft", desc = "Theme switcher" },
+
+        -- LSP (top-level, not grouped — leave as-is or fold under a "code"/"l"
+        -- group later)
+        { "<leader>rn", desc = "LSP rename" },
+        { "<leader>ca", desc = "LSP code action" },
+
+        -- explore (single key, top-level)
+        { "<leader>e", desc = "Toggle file tree (nvim-tree)" },
+
+        -- markdown (peek.nvim)
+        { "<leader>mp", desc = "Peek open" },
+        { "<leader>mc", desc = "Peek close" },
+
+        -- gitsigns
+        { "<leader>gs", desc = "Stage hunk" },
+        { "<leader>gr", desc = "Reset hunk" },
+        { "<leader>gp", desc = "Preview hunk" },
+        { "<leader>gb", desc = "Toggle line blame" },
+        { "<leader>gd", desc = "Diff this" },
+
+        -- toggle
+        { "<leader>tt", desc = "Open terminal in new tab" },
+      })
+    end,
+  },
+  {
+    "lukas-reineke/indent-blankline.nvim",
+    main = "ibl",
+    event = { "BufReadPost", "BufNewFile" },
+    opts = {
+      indent = { char = "|" },
+      scope = {
+        enabled = true,
+        show_start = true,
+        show_end = false,
+        highlight = { "Function", "Label" }, -- ties scope color to treesitter captures
+      },
+      exclude = {
+        filetypes = { "help", "alpha", "dashboard", "neo-tree", "Trouble", "lazy", "oil" },
+      },
+    },
+  },
+  {
+    "lewis6991/gitsigns.nvim",
+    event = { "BufReadPre", "BufNewFile" },
+    opts = {
+      signs = {
+        add = { text = "|" },
+        change = { text = "|" },
+        delete = { text = "_" },
+        topdelete = { text = "‾" },
+        changedelete = { text = "~" },
+      },
+      current_line_blame = false, -- toggle on with keymap below if you want it
+      on_attach = function(bufnr)
+        local gs = package.loaded.gitsigns
+        local function map(mode, l, r, desc)
+          vim.keymap.set(mode, l, r, { buffer = bufnr, desc = desc })
+        end
+
+        map("n", "]c", gs.next_hunk, "Next hunk")
+        map("n", "[c", gs.prev_hunk, "Prev hunk")
+        map("n", "<leader>gs", gs.stage_hunk, "Stage hunk")
+        map("n", "<leader>gr", gs.reset_hunk, "Reset hunk")
+        map("n", "<leader>gp", gs.preview_hunk, "Preview hunk")
+        map("n", "<leader>gb", gs.toggle_current_line_blame, "Toggle blame")
+        map("n", "<leader>gd", gs.diffthis, "Diff this")
+      end
+    },
+  },
+  {
+    "windwp/nvim-autopairs",
+    event = "InsertEnter",
+    opts = {
+      check_ts = true, -- treesitter-aware pairing, avoids pairing inside strings/comments
+      ts_config = {
+        cpp = { "string", "comment" },
+        lua = { "string" },
+      },
+    },
+    config = function(_, opts)
+      require("nvim-autopairs").setup(opts)
+      -- integrate with nvim-cmp so <CR> on a completion doesn't double-close brackets
+      local cmp_autopairs = require("nvim-autopairs.completion.cmp")
+      local cmp = require("cmp")
+      cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
+    end,
   }
 })
 
@@ -292,9 +402,7 @@ vim.keymap.set("n", "<leader>tt", function()
   vim.cmd("tabnew")
   vim.cmd("terminal")
   vim.cmd("startinsert")
-end, {
-  desc = "Open terminal in new tab"
-})
+end, { desc = "Open terminal in new tab" })
 
 vim.keymap.set(
   "t",
