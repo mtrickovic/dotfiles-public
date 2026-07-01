@@ -29,8 +29,15 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 -- Fix telescope treesitter preview compatibility
-vim.treesitter.ft_to_lang = vim.treesitter.language.get_lang
-  or vim.treesitter.ft_to_lang
+if not vim.treesitter.ft_to_lang then
+  vim.treesitter.ft_to_lang = function(ft)
+    local ok, lang = pcall(vim.treesitter.language.get_lang, ft)
+    if ok and lang then
+      return lang
+    end
+    return ft
+  end
+end
 
 -- Load plugins
 require("lazy").setup({
