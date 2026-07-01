@@ -43,34 +43,72 @@ end
 require("lazy").setup({
   {
     "nvim-telescope/telescope.nvim",
-    tag = "0.1.8",
-    dependencies = { "nvim-lua/plenary.nvim" },
-    config = function()
-      local builtin = require("telescope.builtin")
-      vim.keymap.set(
-        "n", "<leader>ff",
-        builtin.find_files,
-        { desc = "Find files" }
-      )
-      vim.keymap.set(
-        "n", "<leader>fg",
-        builtin.live_grep,
-        { desc = "Live grep" }
-      )
-      vim.keymap.set(
-        "n", "<leader>fb",
-        builtin.buffers,
-        { desc = "Buffer" }
-      )
-      vim.keymap.set(
-        "n", "<leader>ft",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      {
+        "nvim-telescope/telescope-fzf-native.nvim",
+        build = "make",
+      },
+    },
+    keys = {
+      {
+        "<leader>ff",
+        function() require("telescope.builtin").find_files() end,
+        desc = "Find files",
+      },
+      {
+        "<leader>fg",
+        function() require("telescope.builtin").live_grep() end,
+        desc = "Live grep",
+      },
+      {
+        "<leader>fb",
+        function() require("telescope.builtin").buffers() end,
+        desc = "Find buffers",
+      },
+      {
+        "<leader>ft",
         function()
-          require("telescope.builtin").colorscheme({
-            enable_preview = true,
-          })
+          require("telescope.builtin").colorscheme({ enable_preview = true })
         end,
-        { desc = "Theme switcher" }
-      )
+        desc = "Theme switcher"
+      },
+      {
+        "<leader>fd",
+        function() require("telescope.builtin").diagnostics() end,
+        desc = "Find diagnostics"
+      },
+    },
+    config = function(_, opts)
+      local telescope = require("telescope")
+
+      opts.defaults = vim.tbl_deep_extend("force", opts.defaults or {}, {
+        wrap_results = true,
+        layout_strategy = "horizontal",
+        layout_config = { prompt_position = "top" },
+        sorting_strategy = "ascending",
+        winblend = 0,
+      })
+
+      opts.pickers = {
+        diagnostics = {
+          theme = "ivy",
+          initial_mode = "normal",
+          layout_config = { preview_cutoff = 9999 },
+        },
+      }
+
+      opts.extensions = {
+        fzf = {
+          fuzzy = true,
+          override_generic_sorter = true,
+          override_file_sorter = true,
+          case_mode = "smart_case",
+        },
+      }
+
+      telescope.setup(opts)
+      telescope.load_extension("fzf")
     end,
   },
   {
