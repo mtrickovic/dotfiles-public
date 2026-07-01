@@ -41,6 +41,7 @@ autocmd FileType tex,xml setlocal indentexpr=  " Disable automatic code
 autocmd FileType c,cpp setlocal shiftwidth=2 tabstop=2 expandtab " C/C++ files
 autocmd FileType sh    setlocal shiftwidth=2 tabstop=2 expandtab " Bash files
 autocmd FileType cmake setlocal shiftwidth=2 tabstop=2 expandtab " CMake files
+autocmd FileType lua   setlocal shiftwidth=2 tabstop=2 expandtab " Lua files
 
 noremap n nzz                   " Center view on the search result.
 noremap <F4> mqggVG=`qzz        " Fix indentation in whole file;
