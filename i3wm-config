@@ -17,6 +17,8 @@ bindsym Shift+Print exec scrot -s '%Y-%m-%d_%H-%M-%S.png' -e 'mv $f ~/Pictures/S
 # https://wiki.archlinux.org/index.php/XDG_Autostart
 exec --no-startup-id dex --autostart --environment i3
 
+exec --no-startup-id setxkbmap -layout us,rs -variant ,latin -option grp:alt_shift_toggle
+
 # Launch terminal into scratchpad
 #bindsym $mod+Shift+Return exec alacritty --class scratchpad_term
 #for_window [class="scratchpad_term"] floating enable, move scratchpad
