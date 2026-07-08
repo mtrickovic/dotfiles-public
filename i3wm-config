@@ -230,5 +230,4 @@ bindsym Mod1+r mode "resize"
 #
 # Please remove the following exec line:
 #######################################################################
-exec i3-config-wizard
 exec --no-startup-id blueman-applet
