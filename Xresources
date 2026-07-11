@@ -18,6 +18,10 @@ xterm*geometry:            120x30
 ! ------------------------------------------------------------
 xterm*internalBorder:      5
 
+! Subtle light edge — reads as a frosted-glass panel border
+xterm*borderColor:         #839496
+xterm*borderWidth:         1
+
 
 ! ------------------------------------------------------------
 ! Scrollback history
@@ -61,14 +65,15 @@ xterm*antialias:           true
 
 
 ! ------------------------------------------------------------
-! Window opacity
-! Alacritty: opacity = 0.95
-! xterm itself has no built-in transparency; true composited
-! transparency requires a compositor (picom, xcompmgr).
+! Window opacity — "glass/acrylic" look
+! xterm itself has no built-in transparency or blur; true
+! composited transparency + blur requires a compositor
+! (picom with a blur backend — xcompmgr cannot blur).
 ! The resource below sets the X11 _NET_WM_WINDOW_OPACITY hint
-! which compositors honour. Value: 0–0xffffffff (0.95 * max)
+! which the compositor reads. Lower = glassier. Pair this with
+! the picom blur rule (see picom.conf) targeting class 'XTerm'.
 ! ------------------------------------------------------------
-xterm*opacity:             95
+xterm*opacity:             80
 
 
 ! ------------------------------------------------------------

@@ -44,6 +44,12 @@
       "platform": "linux"
     },
     {
+      "comment": "--- Picom ---",
+      "source": "~/GH/dotfiles/picom.conf",
+      "target": "~/.config/picom/picom.conf",
+      "platform": "linux"
+    },
+    {
       "comment": "--- Neovim ---",
       "source": "~/GH/dotfiles/nvim",
       "target": "~/.config/nvim",

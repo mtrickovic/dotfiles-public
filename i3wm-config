@@ -5,6 +5,11 @@
 # is used in the bar {} block below.
 font pango:JetBrainsMono Nerd Font 10
 
+# Load ~/.Xresources into X's resource database (xterm reads
+# opacity, colors, fonts etc. from here). Must run before any
+# xterm window is opened, or it'll fall back to built-in defaults.
+exec --no-startup-id xrdb -merge ~/.Xresources
+
 exec_always --no-startup-id feh --bg-fill ~/GH/dotfiles/images/systems-programming.png
 
 # Screenshot: full screen
@@ -16,6 +21,8 @@ bindsym Shift+Print exec scrot -s '%Y-%m-%d_%H-%M-%S.png' -e 'mv $f ~/Pictures/S
 # Start XDG autostart .desktop files using dex. See also
 # https://wiki.archlinux.org/index.php/XDG_Autostart
 exec --no-startup-id dex --autostart --environment i3
+
+exec --no-startup-id picom --config ~/.config/picom/picom.conf
 
 exec --no-startup-id setxkbmap -layout us,rs -variant ,latin -option grp:alt_shift_toggle
 
