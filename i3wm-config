@@ -24,7 +24,7 @@ exec --no-startup-id dex --autostart --environment i3
 
 exec --no-startup-id picom --config ~/.config/picom/picom.conf
 
-exec --no-startup-id setxkbmap -layout us,rs -variant ,latin -option grp:alt_shift_toggle
+exec --no-startup-id setxkbmap -layout us,rs -variant ,latin -option grp:win_space_toggle
 
 # Launch terminal into scratchpad
 #bindsym $mod+Shift+Return exec alacritty --class scratchpad_term
