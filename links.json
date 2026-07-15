@@ -50,6 +50,12 @@
       "platform": "linux"
     },
     {
+      "comment": "--- Dunst ---",
+      "source": "~/GH/dotfiles/dunstrc",
+      "target": "~/.config/dunst/dunstrc",
+      "platform": "linux"
+    },
+    {
       "comment": "--- Neovim ---",
       "source": "~/GH/dotfiles/nvim",
       "target": "~/.config/nvim",
