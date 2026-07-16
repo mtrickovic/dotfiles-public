@@ -46,9 +46,10 @@ alias py=python
 alias pre-push="git status && git diff --staged && git log --oneline -5"
 
 export PATH="$HOME/bin/p4merge/bin:$PATH"
+export PATH="$HOME/bin:$PATH"
 
 # Oh-My-Posh Theme
-POSH_THEMES_PATH="${USERPROFILE}/GH/dotfiles"
+POSH_THEMES_PATH="${HOME}/GH/dotfiles"
 omp_config="${POSH_THEMES_PATH}/powerflow.omp.json"
 
 if command -v oh-my-posh &>/dev/null; then
