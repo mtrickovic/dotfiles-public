@@ -563,6 +563,29 @@ require("lazy").setup({
         enabled = true, -- wildmenu completion also becomes a popup
       },
     },
+  },
+  {
+    "folke/snacks.nvim",
+    priority = 1000,
+    lazy = false,
+    opts = {
+      bigfile = { enabled = true },
+      dashboard = { enabled = true },
+      notifier = { enabled = true },
+      quickfile = { enabled = true },
+      statuscolumn = { enabled = true },
+      words = { enabled = true },
+      zen = { enabled = true },
+      lazygit = { enabled = true },
+    },
+    keys = {
+      { "<leader>z",  function() Snacks.zen() end,              desc = "Toggle Zen Mode" },
+      { "<leader>Z",  function() Snacks.zen.zoom() end,          desc = "Toggle Zoom" },
+      { "<leader>gg", function() Snacks.lazygit() end,           desc = "Lazygit" },
+      { "<leader>n",  function() Snacks.notifier.show_history() end, desc = "Notification History" },
+      { "<leader>bd", function() Snacks.bufdelete() end,         desc = "Delete Buffer" },
+      { "<leader>.",  function() Snacks.scratch() end,           desc = "Toggle Scratch Buffer" },
+    },
   }
 })
 
