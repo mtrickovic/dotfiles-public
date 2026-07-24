@@ -27,13 +27,13 @@
     },
     {
       "comment": "--- Tmux ---",
-      "source": "~/GH/dotfiles/.tmux-linux.conf",
+      "source": "~/GH/dotfiles/tmux/tmux.conf",
       "target": "~/.tmux.conf",
       "platform": "linux"
     },
     {
       "comment": "--- Tmux ---",
-      "source": "~/GH/dotfiles/.tmux-windows.conf",
+      "source": "~/GH/dotfiles/tmux/tmux-windows.conf",
       "target": "~/.tmux.conf",
       "platform": "windows"
     },
