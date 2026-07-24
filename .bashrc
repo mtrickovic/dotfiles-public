@@ -33,7 +33,7 @@ parse_git_branch() {
 parse_git_dirty() {
   [[ $(git status --porcelain 2>/dev/null) ]] && echo "*"
 }
-export PS1='\[\033[1;34m\]\w\[\033[0m\]\[\033[1;32m\]$(parse_git_branch)\[\033[1;33m\]$(parse_git_dirty)\[\033[0m\]\[\033[1;36m\] ➜\[\033[0m\] '
+PS1='\[\033[1;34m\]\w\[\033[0m\]\[\033[1;32m\]$(parse_git_branch)\[\033[1;33m\]$(parse_git_dirty)\[\033[0m\]\[\033[1;36m\] ➜\[\033[0m\] '
 
 # Modern ls (eza) with fallback to classic ls if eza isn't installed
 if command -v eza &>/dev/null; then
