@@ -544,6 +544,25 @@ require("lazy").setup({
       vim.keymap.set("n", "<leader>th", "<cmd>ToggleTerm direction=horizontal<CR>", { desc = "Terminal (horizontal)" })
       vim.keymap.set("n", "<leader>tv", "<cmd>ToggleTerm direction=vertical<CR>", { desc = "Terminal (vertical)" })
     end,
+  },
+  {
+    "folke/noice.nvim",
+    event = "VeryLazy",
+    dependencies = {
+      "MunifTanjim/nui.nvim",
+    },
+    opts = {
+      cmdline = {
+        enabled = true,
+        view = "cmdline_popup", -- floating popup instead of bottom line
+      },
+      messages = {
+        enabled = true, -- keep this off unless you also want popup messages/notifcations
+      },
+      popupmenu = {
+        enabled = true, -- wildmenu completion also becomes a popup
+      },
+    },
   }
 })
 
