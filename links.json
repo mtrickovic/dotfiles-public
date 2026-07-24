@@ -84,6 +84,12 @@
       "platform": "linux"
     },
     {
+      "comment": "--- X11 ---",
+      "source": "~/GH/dotfiles/.xinitrc",
+      "target": "~/.xinitrc",
+      "platform": "linux"
+    },
+    {
       "comment": "--- i3wm (Linux only) ---",
       "source": "~/GH/dotfiles/i3wm-config",
       "target": "~/.config/i3/config",
