@@ -586,6 +586,13 @@ require("lazy").setup({
       { "<leader>bd", function() Snacks.bufdelete() end,         desc = "Delete Buffer" },
       { "<leader>.",  function() Snacks.scratch() end,           desc = "Toggle Scratch Buffer" },
     },
+  },
+  {
+    "rhysd/accelerated-jk",
+    keys = {
+      { "j", "<Plug>(accelerated_jk_gj)", mode = "n" },
+      { "k", "<Plug>(accelerated_jk_gk)", mode = "n" },
+    },
   }
 })
 
