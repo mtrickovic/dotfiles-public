@@ -268,7 +268,7 @@ require("lazy").setup({
     build = "deno task --quiet build:fast",
     config = function()
       require("peek").setup({
-        app = { "firefox" },
+        app = { "chromium" },
         -- automatically open preview on markdown file open
         auto_load = true,
         -- close preview window on buffer delete
