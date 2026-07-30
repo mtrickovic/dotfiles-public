@@ -12,7 +12,6 @@ brightnessctl
 chromium
 clang
 cmake
-code
 cppcheck
 cryptsetup
 dhcpcd
@@ -35,7 +34,6 @@ intel-ucode
 iw
 iwd
 jq
-keepass
 keepassxc
 lazygit
 libc++
@@ -46,7 +44,6 @@ linux-headers
 man-db
 man-pages
 mdbook
-nano
 neovim
 ntfs-3g
 openssh
@@ -67,7 +64,6 @@ shellcheck
 shfmt
 smartmontools
 sof-firmware
-solaar
 sublime-merge
 sublime-text
 swtpm
@@ -87,7 +83,6 @@ ufw
 unrar
 unzip
 valgrind
-vim
 virt-manager
 vlc
 vlc-plugin-ass
