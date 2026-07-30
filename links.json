@@ -61,6 +61,21 @@
       "platform": "windows"
     },
     {
+      "source": "~/GH/dotfiles/hypr",
+      "target": "~/.config/hypr",
+      "platform": "linux"
+    },
+    {
+      "source": "~/GH/dotfiles/waybar",
+      "target": "~/.config/waybar",
+      "platform": "linux"
+    },
+    {
+      "source": "~/GH/dotfiles/ghostty",
+      "target": "~/.config/ghostty",
+      "platform": "linux"
+    },
+    {
       "comment": "--- Alacritty ---",
       "source": "~/GH/dotfiles/alacritty/alacritty-linux.toml",
       "target": "~/.config/alacritty/alacritty.toml",
