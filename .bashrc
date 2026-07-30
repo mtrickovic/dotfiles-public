@@ -26,6 +26,10 @@ shopt -s autocd
 shopt -s cdspell
 shopt -s dirspell
 
+# Use Neovim as the default text editor
+export EDITOR=nvim
+export VISUAL=nvim
+
 # Your nice prompt (we just made)
 parse_git_branch() {
   git branch 2>/dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'
