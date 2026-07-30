@@ -44,12 +44,6 @@
       "platform": "linux"
     },
     {
-      "comment": "--- Picom ---",
-      "source": "~/GH/dotfiles/picom.conf",
-      "target": "~/.config/picom/picom.conf",
-      "platform": "linux"
-    },
-    {
       "comment": "--- Dunst ---",
       "source": "~/GH/dotfiles/dunstrc",
       "target": "~/.config/dunst/dunstrc",
@@ -76,30 +70,6 @@
       "source": "~/GH/dotfiles/alacritty/alacritty-windows.toml",
       "target": "~/AppData/Roaming/alacritty/alacritty.toml",
       "platform": "windows"
-    },
-    {
-      "comment": "--- Xterm ---",
-      "source": "~/GH/dotfiles/Xresources",
-      "target": "~/.Xresources",
-      "platform": "linux"
-    },
-    {
-      "comment": "--- X11 ---",
-      "source": "~/GH/dotfiles/.xinitrc",
-      "target": "~/.xinitrc",
-      "platform": "linux"
-    },
-    {
-      "comment": "--- i3wm (Linux only) ---",
-      "source": "~/GH/dotfiles/i3wm-config",
-      "target": "~/.config/i3/config",
-      "platform": "linux"
-    },
-    {
-      "comment": "--- Polybar (Linux only) ---",
-      "source": "~/GH/dotfiles/polybar",
-      "target": "~/.config/polybar",
-      "platform": "linux"
     },
     {
       "comment": "--- Windows Terminal (Windows only) ---",
