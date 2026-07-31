@@ -65,6 +65,7 @@ button:hover {
 #wireplumber,
 #tray,
 #network,
+#language,
 #mode,
 #scratchpad {
   margin-top: 2px;
@@ -93,6 +94,11 @@ button:hover {
 #network {
     color: @yellow;
     border-bottom: 2px solid @yellow;
+}
+
+#language {
+    color: @sapphire;
+    border-bottom: 2px solid @sapphire;
 }
 
 #idle_inhibitor {

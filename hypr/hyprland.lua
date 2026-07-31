@@ -232,10 +232,10 @@ hl.config({
 
 hl.config({
     input = {
-        kb_layout  = "us",
-        kb_variant = "",
+        kb_layout  = "us,rs",
+        kb_variant = ",latin",
         kb_model   = "",
-        kb_options = "",
+        kb_options = "grp:alt_shift_toggle",
         kb_rules   = "",
 
         follow_mouse = 1,
