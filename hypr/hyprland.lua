@@ -15,11 +15,20 @@
 ------------------
 
 -- See https://wiki.hypr.land/Configuring/Basics/Monitors/
+-- Main display (Samsung 27" 1440p @144Hz), positioned to the right
 hl.monitor({
-    output   = "",
-    mode     = "preferred",
-    position = "auto",
-    scale    = "auto",
+    output   = "HDMI-A-1",
+    mode     = "2560x1440@144",
+    position = "1920x0",
+    scale    = 1.0,
+})
+
+-- Laptop panel, vertically centered against the main display: (1440-1080)/2 = 180
+hl.monitor({
+    output   = "eDP-1",
+    mode     = "1920x1080@60",
+    position = "0x180",
+    scale    = 1.0,
 })
 
 
