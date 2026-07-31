@@ -64,8 +64,6 @@ shellcheck
 shfmt
 smartmontools
 sof-firmware
-sublime-merge
-sublime-text
 swtpm
 terminus-font
 thermald
@@ -112,3 +110,5 @@ gvfs
 gvfs-mtp
 tumbler
 vulkan-intel
+onnxruntime-cpu
+pipewire-jack
