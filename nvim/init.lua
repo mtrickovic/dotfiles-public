@@ -8,8 +8,6 @@ end
 -- Colorscheme
 if vim.fn.exists("&termguicolors") == 1
   and vim.fn.exists("&winblend") == 1 then
-  vim.g.neosolarized_termtrans = 1
-  vim.cmd("runtime ./colors/solarized_true.vim")
   vim.opt.termguicolors = true
   vim.opt.winblend = 0
   vim.opt.wildoptions = "pum"
@@ -228,7 +226,19 @@ require("lazy").setup({
     end,
   },
   { "folke/tokyonight.nvim" },
-  { "catppuccin/nvim", name = "catppuccin" },
+  {
+    "catppuccin/nvim",
+    name = "catppuccin",
+    lazy = false,
+    priority = 1000,
+    config = function()
+      require("catppuccin").setup({
+        flavor = "frappe",
+      })
+
+      vim.cmd.colorscheme("catppuccin")
+    end
+  },
   { "rose-pine/neovim", name = "rose-pine" },
   { "rebelot/kanagawa.nvim" },
   {
