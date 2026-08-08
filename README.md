@@ -96,6 +96,9 @@ Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy Unrestricted
 git clone https://github.com/mtrickovic/dotfiles-public.git dotfiles
 cd dotfiles
 
+# Initialize and pull submodules (TPM, etc.)
+git submodule update --init --recursive
+
 # Use dotmap-cli to create symlinks from links.json
 dotmap link
 ```
@@ -189,49 +192,63 @@ Which runs `oh-my-posh font install JetBrainsMono` after winget packages.
 
 ```
 dotfiles/
-├── .bashrc                         # Bash configuration (Linux)
-├── .gitconfig                      # Main Git config (cross-platform)
-├── .gitconfig-linux                # Linux-specific Git settings
-├── .gitconfig-windows              # Windows-specific Git settings
-├── .gitattributes                  # Line ending configuration
-├── .gitignore                      # Git ignore rules
-├── .vimrc                          # Vim configuration
-├── i3wm-config                     # i3 window manager config (Linux)
-├── profile.ps1                     # PowerShell profile
-├── settings.json                   # Windows Terminal config
-├── powerflow.omp.json              # oh-my-posh theme
-├── Preferences.sublime-settings    # Sublime Text settings
-├── links.json                      # Symlink definitions (dotmap-cli)
 ├── alacritty/
 │   ├── alacritty.toml              # Base Alacritty config
 │   ├── alacritty-linux.toml        # Linux overrides
 │   └── alacritty-windows.toml      # Windows overrides
-├── nvim/
-│   ├── init.lua                    # Neovim configuration
-│   └── colors/
-│       └── solarized_true.vim      # Color scheme
-├── polybar/
-│   ├── config.ini                  # Polybar configuration
-│   ├── launch_polybar.sh           # Polybar launch script
-│   └── thermald-status.sh          # Temperature status script
-├── rofi/
-│   ├── config.rasi                 # Rofi configuration
-│   └── catppuccin-mocha.rasi       # Catppuccin Mocha theme
+├── .bashrc                         # Bash configuration (Linux)
+├── dunstrc                         # Dunst notification daemon config
 ├── fonts/
-│   ├── FiraCode/
-│   ├── SourceCodePro/
-│   └── Terminus/
-├── images/                         # Screenshots / assets
-└── scripts/
-    ├── windows/
-    │   ├── setup.ps1               # Install packages + symlinks
-    │   ├── firewall.ps1            # Hardening firewall inbound rules
-    │   └── install_fonts.ps1       # Font installer
-    └── linux/
-        ├── pomodoro.sh
-        ├── music.sh
-        ├── thermald.sh
-        └── kernel-trace-full.sh
+│   ├── FiraCode/                   # Dev fonts
+│   ├── SourceCodePro/              # Dev fonts
+│   └── Terminus/                   # Bitmap fonts for terminal
+├── ghostty/
+│   └── config                      # Ghostty terminal emulator config
+├── .gitattributes                  # Git line ending and attribute rules
+├── .gitconfig                      # Main Git configuration (cross-platform)
+├── .gitconfig-linux                # Linux-specific Git settings
+├── .gitconfig-windows              # Windows-specific Git settings
+├── .gitignore                      # Paths ignored by Git
+├── .gitmodules                     # Git submodules configuration (TPM, etc.)
+├── hypr/
+│   ├── hyprland.lua                # Hyprland window manager config
+│   ├── hypridle.conf               # Idle listener daemon config
+│   └── hyprlock.conf               # Fast, secure screen locker
+├── images/                         # Wallpapers and repository assets
+│   ├── keep-calm-code-bg.png
+│   ├── systems-programming.png
+│   └── systems-programming-light.png
+├── links.json                      # Symlink definitions (dotmap-cli)
+├── nvim/
+│   ├── init.lua                    # Neovim entry point
+│   ├── colors/                     # Custom color schemes
+│   └── lua/                        # Modular Neovim lua configurations
+├── packages/
+│   └── pkglist.txt                 # List of installed system packages
+├── powerflow.omp.json              # oh-my-posh prompt theme
+├── Preferences.sublime-settings    # Sublime Text preferences
+├── profile.ps1                     # PowerShell profile configuration
+├── README.md                       # Repository documentation
+├── rofi/
+│   ├── config.rasi                 # Rofi launcher menu configuration
+│   └── catppuccin-mocha.rasi       # Catppuccin Mocha theme for Rofi
+├── scripts/
+│   ├── linux/                      # Shell automation scripts (pomodoro, thermald...)
+│   └── windows/                    # PowerShell deployment & hardening scripts
+├── settings.json                   # Windows Terminal configuration
+├── swappy/
+│   └── config                      # Swappy snapshot editing tool config
+├── tmux/
+│   ├── tmux.conf                   # Main Tmux configuration (Loads plugins)
+│   ├── tmux-windows.conf           # Windows-specific Tmux overrides
+│   ├── statusline.conf             # Status line UI layout
+│   ├── theme.conf                  # Core colors and styling rules
+│   └── plugins/                    # Managed via Tmux Plugin Manager (TPM)
+├── .vimrc                          # Vim runtime configuration
+└── waybar/
+    ├── config.jsonc                # Waybar status bar structure
+    ├── style.css                   # Custom global CSS styles
+    └── mocha.css                   # Catppuccin color definitions for bar
 ```
 
 ---
