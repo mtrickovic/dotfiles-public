@@ -50,6 +50,12 @@
       "platform": "linux"
     },
     {
+      "comment": "--- Rofi ---",
+      "source": "~/GH/dotfiles/rofi",
+      "target": "~/.config/rofi",
+      "platform": "linux"
+    },
+    {
       "comment": "--- Swappy ---",
       "source": "~/GH/dotfiles/swappy",
       "target": "~/.config/swappy",
