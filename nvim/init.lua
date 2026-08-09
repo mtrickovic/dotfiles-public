@@ -696,3 +696,14 @@ vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
 
 vim.opt.foldenable = false
 vim.opt.foldlevel = 99
+
+-- Insert-mode abbreviations for symbols that are annoying to type
+-- NOTE: LHS must be "full-id" (all keyword chars), "end-id" (last char
+-- keyword, rest non-keyword), or "non-id" (last char non-keyword) -- mixing
+-- punctuation + multiple letters like ",check" is none of these and Vim
+-- rejects it with E474.
+vim.cmd([[
+  iabbrev chk ✓
+  iabbrev xcr ✗
+  iabbrev emd —
+]])
