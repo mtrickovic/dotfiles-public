@@ -505,6 +505,10 @@ require("lazy").setup({
     "stevearc/conform.nvim",
     event = { "BufWritePre" },
     cmd = { "ConformInfo" },
+    keys = {
+      -- Full-buffer format, for brand new files you actually want reformatted
+      { "<leader>f", function() require("conform").format({ async = true }) end, desc = "Format Buffer" },
+    },
     opts = {
       formatters_by_ft = {
         c = { "clang_format" },
@@ -514,12 +518,80 @@ require("lazy").setup({
       },
       formatters = {
         shfmt = { args = { "-i", "2" } },
+        clang_format = {
+          inherit = true,
+          args = { "--style=file", "--fallback-style=LLVM", "--assume-filename=$FILENAME" },
+        },
       },
-      format_on_save = {
-        timeout_ms = 500,
-        lsp_fallback = true,
-      },
+      -- IMPORTANT: no format_on_save here. format_on_save only supports
+      -- whole-buffer formatting; it can't drive range-only formatting.
+      -- We do that ourselves below.
     },
+    config = function(_, opts)
+      require("conform").setup(opts)
+
+      -- Compute the changed line ranges by diffing the CURRENT BUFFER
+      -- CONTENT (not the file on disk) against the git-indexed version.
+      -- This is what makes it see your latest, unsaved edits.
+      local function get_changed_ranges(bufnr)
+        local bufname = vim.api.nvim_buf_get_name(bufnr)
+        if bufname == "" then return {} end
+
+        local dir = vim.fn.fnamemodify(bufname, ":h")
+        local root_out = vim.fn.systemlist({ "git", "-C", dir, "rev-parse", "--show-toplevel" })
+        if vim.v.shell_error ~= 0 or #root_out == 0 then
+          return {} -- not in a git repo
+        end
+        local root = root_out[1]
+        local relpath = bufname:sub(#root + 2)
+
+        -- Version currently in the index (staged, or HEAD if unstaged/clean)
+        local old = vim.fn.system({ "git", "-C", root, "show", ":" .. relpath })
+        if vim.v.shell_error ~= 0 then
+          return {} -- untracked file, nothing to diff against yet
+        end
+
+        local old_tmp = vim.fn.tempname()
+        local new_tmp = vim.fn.tempname()
+        vim.fn.writefile(vim.split(old, "\n"), old_tmp)
+        vim.fn.writefile(vim.api.nvim_buf_get_lines(bufnr, 0, -1, false), new_tmp)
+
+        local diff = vim.fn.systemlist({ "git", "diff", "--no-index", "-U0", old_tmp, new_tmp })
+        vim.fn.delete(old_tmp)
+        vim.fn.delete(new_tmp)
+
+        local ranges = {}
+        for _, line in ipairs(diff) do
+          local start, count = line:match("^@@ %-%d+,?%d* %+(%d+),?(%d*) @@")
+          if start then
+            count = tonumber(count) or 1
+            if count == 0 then count = 1 end
+            start = tonumber(start)
+            table.insert(ranges, {
+              start = { start, 0 },
+              ["end"] = { start + count - 1, 0 },
+            })
+          end
+        end
+        return ranges
+      end
+
+      vim.api.nvim_create_autocmd("BufWritePre", {
+        pattern = { "*.c", "*.h", "*.cpp", "*.hpp", "*.cc", "*.sh", "CMakeLists.txt", "*.cmake" },
+        callback = function(args)
+          local ranges = get_changed_ranges(args.buf)
+          if #ranges == 0 then return end -- new/untracked file: don't touch it
+          for _, range in ipairs(ranges) do
+            require("conform").format({
+              bufnr = args.buf,
+              range = range,
+              timeout_ms = 500,
+              lsp_format = "never",
+            })
+          end
+        end,
+      })
+    end,
   },
   {
     "mfussenegger/nvim-lint",
