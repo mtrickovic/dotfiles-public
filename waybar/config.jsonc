@@ -2,7 +2,17 @@
   "position": "top",
   "modules-left": ["hyprland/workspaces"],
   "modules-center": ["hyprland/window"],
-  "modules-right": ["hyprland/language", "network", "pulseaudio", "battery", "clock"],
+  "modules-right": ["custom/pomodoro", "hyprland/language", "network", "pulseaudio", "battery", "clock"],
+
+  "custom/pomodoro": {
+    "format": "<span size='13000' foreground='#fab387'>󱎫 </span>{}",
+    "return-type": "json",
+    "exec": "$HOME/GH/dotfiles/scripts/linux/pomodoro-waybar.sh status",
+    "on-click": "$HOME/GH/dotfiles/scripts/linux/pomodoro-waybar.sh menu",
+    "on-click-right": "$HOME/GH/dotfiles/scripts/linux/pomodoro-waybar.sh stop",
+    "interval": 1,
+    "signal": 8
+  },
   "clock": {
     "format": "<span foreground='#f5c2e7'>   </span>{:%a %d %H:%M}",
     "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"

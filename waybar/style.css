@@ -67,13 +67,25 @@ button:hover {
 #network,
 #language,
 #mode,
-#scratchpad {
+#scratchpad,
+#custom-pomodoro {
   margin-top: 2px;
   margin-bottom: 2px;
   margin-left: 4px;
   margin-right: 4px;
   padding-left: 4px;
   padding-right: 4px;
+}
+
+/* Pomodoro module colors & state borders */
+#custom-pomodoro {
+    color: @peach;
+    border-bottom: 2px solid @peach;
+}
+
+#custom-pomodoro.idle {
+    color: @overlay0;
+    border-bottom: 2px solid @overlay0;
 }
 
 #clock {
