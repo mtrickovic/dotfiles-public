@@ -1,8 +1,8 @@
 {
   "position": "top",
   "modules-left": ["hyprland/workspaces"],
-  "modules-center": ["hyprland/window"],
-  "modules-right": ["custom/pomodoro", "hyprland/language", "network", "pulseaudio", "battery", "clock"],
+  "modules-center": ["clock"],
+  "modules-right": ["custom/pomodoro", "hyprland/language", "bluetooth", "network", "pulseaudio", "cpu", "memory", "battery"],
 
   "custom/pomodoro": {
     "format": "<span size='13000' foreground='#fab387'>󱎫 </span>{}",
@@ -14,8 +14,14 @@
     "signal": 8
   },
   "clock": {
-    "format": "<span foreground='#f5c2e7'>   </span>{:%a %d %H:%M}",
-    "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
+    "format": "󰥔 {:%a, %d. %b %I:%M %p}",
+    "tooltip-format": "<tt><small>{calendar}</small></tt>",
+    "calendar": {
+      "format": {
+        "today": "<span color='#75f1fa'><b>{}</b></span>"
+      }
+    },
+    "on-click": "exec chromium --app=https://calendar.google.com"
   },
   "battery": {
     "states": {
@@ -31,6 +37,27 @@
     "format-full": "<span size='13000' foreground='#B1E3AD'> </span>{capacity}%",
     "format-icons": ["", "", "", "", ""],
     "tooltip-format": "{time}"
+  },
+  "cpu": {
+    "interval": 10,
+    "format": "<span size='13000' foreground='#94e2d5'> </span>{}%",
+    "max-length": 10,
+    "on-click": "exec ghostty --title=btop -e btop"
+  },
+  "memory": {
+    "interval": 30,
+    "format": "<span size='13000' foreground='#cba6f7'> </span>{percentage}%",
+    "tooltip-format": "{used:0.1f}G/{total:0.1f}G used",
+    "on-click": "exec ghostty --title=htop -e htop"
+  },
+  "bluetooth": {
+    "format": "<span size='13000' foreground='#b4befe'></span>",
+    "format-disabled": "", 
+    "format-connected": "<span size='13000' foreground='#b4befe'> </span>{num_connections}",
+    "tooltip-format": "{controller_alias}\t{controller_address}",
+    "tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{device_enumerate}",
+    "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
+    "on-click": "exec ghostty --title=bluetoothctl -e bluetoothctl"
   },
   "network": {
     "format-wifi": "<span size='13000' foreground='#f5e0dc'>  </span>{essid}",

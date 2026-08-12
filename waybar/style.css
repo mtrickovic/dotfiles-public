@@ -1,7 +1,7 @@
 @import "mocha.css"; 
 
 * {
-    font-family: "MesloLGS Nerd Font Mono Bold";
+    font-family: JetBrainsMono Nerd Font Propo;
     font-size: 16px;
     min-height: 0;
     font-weight: bold;
@@ -142,4 +142,20 @@ button:hover {
     border-radius: 15px;
     padding-left: 6px;
     padding-right: 6px;
+}
+
+#bluetooth {
+    color: @lavender;
+    border-bottom: 2px solid @lavender;
+    margin-bottom: 2px;
+}
+
+#cpu {
+    color: @teal;
+    border-bottom: 2px solid @teal;
+}
+
+#memory {
+    color: @mauve;
+    border-bottom: 2px solid @mauve;
 }
