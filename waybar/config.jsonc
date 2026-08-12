@@ -60,22 +60,25 @@
     "on-click": "exec ghostty --title=bluetoothctl -e bluetoothctl"
   },
   "network": {
-    "format-wifi": "<span size='13000' foreground='#f5e0dc'>  </span>{essid}",
-    "format-ethernet": "<span size='13000' foreground='#f5e0dc'>󰤭  </span> Disconnected",
+    "format-wifi": "<span size='13000' foreground='#f5e0dc'> </span>{essid}",
+    "format-ethernet": "<span size='13000' foreground='#f5e0dc'>󰤭  </span>Disconnected",
     "format-linked": "{ifname} (No IP) ",
-    "format-disconnected": "<span size='13000' foreground='#f5e0dc'>  </span>Disconnected",
-    "tooltip-format-wifi": "Signal Strenght: {signalStrength}%"
+    "format-disconnected": "<span size='13000' foreground='#f5e0dc'> </span>Disconnected",
+    "tooltip-format-wifi": "Signal Strenght: {signalStrength}%",
+    "on-click": "exec ghostty --title=iwctl -e iwctl"
   },
   "pulseaudio": {
-      "format": "{icon}  {volume}%",
-      "format-muted": "",
-      "format-icons": {
-          "default": ["", "", " "]
-      },
-      "on-click": "pavucontrol"
+    "format": "{volume}% {icon}",
+    "format-muted": "",
+    "format-icons": {
+      "default": ["", ""]
+    },
+    "scroll-step": 1,
+    "ignored-sinks": ["Easy Effects Sink"],
+    "on-click": "pavucontrol"
   },
   "hyprland/language": {
-      "format": "<span size='13000' foreground='#89b4fa'>󰌜 </span> {}",
+      "format": "<span size='13000' foreground='#89b4fa'>󰌜</span> {}",
       "format-en": "EN",
       "format-rs": "SR",
       "keyboard-name": "rog-strix-scope-ii-96-wireless-keyboard"
