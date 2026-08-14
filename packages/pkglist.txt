@@ -112,3 +112,4 @@ tumbler
 vulkan-intel
 onnxruntime-cpu
 pipewire-jack
+swayosd
