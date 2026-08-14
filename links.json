@@ -56,12 +56,6 @@
       "platform": "linux"
     },
     {
-      "comment": "--- Swappy ---",
-      "source": "~/GH/dotfiles/swappy",
-      "target": "~/.config/swappy",
-      "platform": "linux"
-    },
-    {
       "comment": "--- Neovim ---",
       "source": "~/GH/dotfiles/nvim",
       "target": "~/.config/nvim",

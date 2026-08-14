@@ -332,9 +332,9 @@ hl.bind("Print",
     hl.dsp.exec_cmd([[grim -g "$(slurp)" - | wl-copy]])
 )
 
--- Shift+Print: select region → annotate in Swappy
+-- Shift+Print: select region → annotate in Satty
 hl.bind("SHIFT + Print",
-    hl.dsp.exec_cmd([[grim -g "$(slurp)" - | swappy -f -]])
+    hl.dsp.exec_cmd([[grim -g "$(slurp)" - | satty --filename -]])
 )
 
 -- Super+Print: full screen → clipboard
