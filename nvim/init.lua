@@ -707,3 +707,50 @@ vim.cmd([[
   iabbrev xcr ✗
   iabbrev emd —
 ]])
+
+-- Transparent background for Neovim highlight groups.
+-- Note: Requires terminal emulator transparency (Ghostty, Alacritty, Kitty, etc.).
+local function set_transparent()
+  local groups = {
+    "Normal",
+    "NormalNC",
+    "NormalFloat",
+    "FloatBorder",
+    "SignColumn",
+    "EndOfBuffer",
+    "MsgArea",
+    "Pmenu",
+    "PmenuSbar",
+    "WinBar",
+    "WinBarNC",
+    "StatusLine",
+    "StatusLineNC",
+    "TelescopeNormal",
+    "TelescopeBorder",
+    "NvimTreeNormal",
+    "NvimTreeNormalNC",
+    "NvimTreeEndOfBuffer",
+  }
+
+  for _, group in ipairs(groups) do
+    vim.api.nvim_set_hl(0, group, {
+      bg = "none",
+      ctermbg = "none",
+      force = true,
+    })
+  end
+end
+
+-- Dedicated augroup ensures autocmds aren't duplicated on reload
+local transparent_grp =
+  vim.api.nvim_create_augroup("UserTransparentBg", { clear = true })
+
+vim.api.nvim_create_autocmd("ColorScheme", {
+  group = transparent_grp,
+  pattern = "*",
+  callback = set_transparent,
+  desc = "Apply background transparency across highlight groups",
+})
+
+-- Apply once for the default colorscheme loaded at startup
+set_transparent()
