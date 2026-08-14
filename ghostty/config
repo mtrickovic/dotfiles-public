@@ -1,9 +1,25 @@
 font-family = JetBrains Nerd Font
 font-size = 10
-background-opacity = 0.95
+background-opacity = 0.82
+background-blur-radius = 20
 
 # Slowdown mouse scrolling
 mouse-scroll-multiplier = 0.95
 
 
 async-backend = epoll
+
+theme = TokyoNight Night
+
+# --- visual extras ---
+window-padding-x = 14
+window-padding-y = 10
+window-padding-balance = true
+
+cursor-style = bar
+cursor-style-blink = true
+
+unfocused-split-opacity = 0.6
+
+# subtle 1px separation between splits, matches the glass aesthetic
+split-divider-color = "#1a1b26"
