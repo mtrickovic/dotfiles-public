@@ -414,3 +414,9 @@ hl.config({
         },
     },
 })
+
+hl.window_rule({
+    name  = "satty-float",
+    match = { class = "com.gabm.satty" },
+    float = true,
+})
