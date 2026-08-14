@@ -30,6 +30,7 @@ htop
 hypridle
 hyprland
 hyprlock
+hyprsunset
 intel-ucode
 iw
 iwd
