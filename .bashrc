@@ -89,3 +89,7 @@ if command -v oh-my-posh &>/dev/null; then
     echo "WARNING: OMP config not found: $omp_config" >&2
   fi
 fi
+
+if [ -d "/opt/microchip/xc8/v4.00/bin" ]; then
+  export PATH="$PATH:/opt/microchip/xc8/v4.00/bin"
+fi
