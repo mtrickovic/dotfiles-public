@@ -234,9 +234,12 @@ require("lazy").setup({
     config = function()
       require("catppuccin").setup({
         flavor = "frappe",
+        integrations = {
+          bufferline = true,
+        }
       })
 
-      vim.cmd.colorscheme("catppuccin")
+      vim.cmd.colorscheme("catppuccin-frappe")
     end
   },
   { "rose-pine/neovim", name = "rose-pine" },
@@ -297,16 +300,11 @@ require("lazy").setup({
   },
   {
     "craftzdog/solarized-osaka.nvim",
-    lazy = false,
-    priority = 1000,
-    config = function()
-      require("solarized-osaka").setup({
-        transparent = false,
-        terminal_colors = true,
-      })
-
-      vim.cmd.colorscheme("solarized-osaka")
-    end,
+    lazy = true,
+    opts = {
+      transparent = false,
+      terminal_colors = true,
+    },
   },
   {
     "akinsho/bufferline.nvim",
