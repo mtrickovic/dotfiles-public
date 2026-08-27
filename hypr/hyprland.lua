@@ -325,6 +325,12 @@ hl.bind("XF86AudioPause", hl.dsp.exec_cmd("playerctl play-pause"), { locked = tr
 hl.bind("XF86AudioPlay",  hl.dsp.exec_cmd("playerctl play-pause"), { locked = true })
 hl.bind("XF86AudioPrev",  hl.dsp.exec_cmd("playerctl previous"),   { locked = true })
 
+-- Toggle the terminal scratchpad up and down
+hl.bind("SUPER + minus", hl.dsp.workspace.toggle_special("magic"))
+
+-- Send active window TO the scratchpad (or pull it back out to current workspace if it's already there)
+hl.bind("SUPER + SHIFT + minus", hl.dsp.window.move({ workspace = "special:magic" }))
+
 -------------------
 -- SCREENSHOTS ---
 -------------------
