@@ -450,3 +450,14 @@ hl.window_rule({
     match = { class = "com.gabm.satty" },
     float = true,
 })
+
+hl.window_rule({
+  name = "showmethekey",
+  match = { class = "one.alynx.showmethekey" },
+  float = true,
+  pin = true,
+  border_size = 0,
+  no_shadow = true,
+  no_blur = true,
+  move = { "(monitor_w - window_w) / 2", "monitor_h - window_h - 60" },
+})
