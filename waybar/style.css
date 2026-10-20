@@ -67,6 +67,7 @@ button:hover {
 #network,
 #language,
 #mode,
+#custom-uptime,
 #scratchpad,
 #custom-pomodoro {
   margin-top: 2px;
@@ -125,6 +126,11 @@ button:hover {
 #battery {
     color: @green;
     border-bottom: 2px solid @green;
+}
+
+#custom-uptime {
+    color: @peach;
+    border-bottom: 2px solid @peach;
 }
 
 /* If workspaces is the leftmost module, omit left margin */

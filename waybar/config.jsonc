@@ -2,7 +2,7 @@
   "position": "top",
   "modules-left": ["hyprland/workspaces"],
   "modules-center": ["clock"],
-  "modules-right": ["custom/pomodoro", "hyprland/language", "bluetooth", "network", "pulseaudio", "cpu", "memory", "battery"],
+  "modules-right": ["custom/pomodoro", "hyprland/language", "cpu", "memory", "bluetooth", "network", "pulseaudio", "custom/uptime", "battery"],
 
   "custom/pomodoro": {
     "format": "<span size='13000' foreground='#fab387'>󱎫 </span>{}",
@@ -80,7 +80,12 @@
   "hyprland/language": {
       "format": "<span size='13000' foreground='#89b4fa'>󰌜</span> {}",
       "format-en": "EN",
-      "format-rs": "SR",
-      "keyboard-name": "rog-strix-scope-ii-96-wireless-keyboard"
+      "format-rs": "SR"
+  },
+  "custom/uptime": {
+      "exec": "awk '{d=int($1/86400); h=int($1%86400/3600); m=int($1%3600/60); printf \"%dd %dh %dm\", d, h, m}' /proc/uptime",
+      "interval": 60,
+      "format": "<span size='13000' foreground='#fab387'>󰅐 </span>{}",
+      "tooltip": false
   }
 }
