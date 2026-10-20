@@ -1,3 +1,4 @@
+7zip
 adobe-source-code-pro-fonts
 alacritty
 alsa-firmware
@@ -5,10 +6,12 @@ alsa-utils
 base
 base-devel
 bat
+bc
 blueman
 bluez
 bluez-utils
 brightnessctl
+btop
 chromium
 clang
 cmake
@@ -42,6 +45,8 @@ libc++abi
 linux
 linux-firmware-intel
 linux-headers
+lld
+llvm
 man-db
 man-pages
 mdbook
@@ -57,12 +62,14 @@ python-click
 python-pip
 python-pyxdg
 qemu-full
+ripgrep
 rofi
 rsync
 sbctl
 sbsigntools
 shellcheck
 shfmt
+showmethekey
 smartmontools
 sof-firmware
 swtpm
@@ -90,6 +97,7 @@ vlc-plugin-freetype
 vlc-plugin-matroska
 vlc-plugin-srt
 waybar
+wf-recorder
 wireplumber
 yazi
 yt-dlp
