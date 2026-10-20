@@ -307,8 +307,29 @@ hl.config({
   },
 })
 
-hl.bind(mainMod .. " + S",         hl.dsp.workspace.toggle_special("magic"))
-hl.bind(mainMod .. " + SHIFT + S", hl.dsp.window.move({ workspace = "special:magic" }))
+-- Special workspace (scratchpad)
+hl.bind(mainMod .. " + minus",         hl.dsp.workspace.toggle_special("magic"))
+
+-- Toggle active window in/out of the "magic" scratchpad
+hl.bind(mainMod .. " + SHIFT + minus", function()
+  local w = hl.get_active_window()
+  if not w then return end
+
+  local ws = w.workspace
+  local on_scratch = ws and (ws.name == "special:magic" or tostring(ws.name):match("^special:magic"))
+
+  if on_scratch then
+    -- Pull it back out to the currently active regular workspace
+    hl.dispatch(hl.dsp.window.move({
+      workspace = hl.get_active_workspace()
+    }))
+  else
+    -- Send it to the scratchpad
+    hl.dispatch(hl.dsp.window.move({
+      workspace = "special:magic"
+    }))
+  end
+end)
 
 -- Scroll through existing workspaces with mainMod + scroll
 hl.bind(mainMod .. " + mouse_down", hl.dsp.focus({ workspace = "e+1" }))
@@ -331,12 +352,6 @@ hl.bind("XF86AudioNext",  hl.dsp.exec_cmd("playerctl next"),       { locked = tr
 hl.bind("XF86AudioPause", hl.dsp.exec_cmd("playerctl play-pause"), { locked = true })
 hl.bind("XF86AudioPlay",  hl.dsp.exec_cmd("playerctl play-pause"), { locked = true })
 hl.bind("XF86AudioPrev",  hl.dsp.exec_cmd("playerctl previous"),   { locked = true })
-
--- Toggle the terminal scratchpad up and down
-hl.bind("SUPER + minus", hl.dsp.workspace.toggle_special("magic"))
-
--- Send active window TO the scratchpad (or pull it back out to current workspace if it's already there)
-hl.bind("SUPER + SHIFT + minus", hl.dsp.window.move({ workspace = "special:magic" }))
 
 -------------------
 -- SCREENSHOTS ---
