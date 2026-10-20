@@ -21,6 +21,8 @@ hl.monitor({
     mode     = "2560x1440@144",
     position = "1920x0",
     scale    = 1.0,
+    transform = 0,
+    mirror    = ""
 })
 
 -- Laptop panel, vertically centered against the main display: (1440-1080)/2 = 180
