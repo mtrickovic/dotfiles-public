@@ -93,3 +93,6 @@ fi
 if [ -d "/opt/microchip/xc8/v4.00/bin" ]; then
   export PATH="$PATH:/opt/microchip/xc8/v4.00/bin"
 fi
+
+# Machine-local settings (not tracked)
+[ -f "$HOME/.bashrc.local" ] && . "$HOME/.bashrc.local"
